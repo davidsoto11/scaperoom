@@ -1,4 +1,4 @@
-/* Retos basados exclusivamente en los cuatro apuntes incluidos en el repositorio. */
+/* Contenido basado en los cuatro apuntes originales; v1 conserva sus preguntas. */
 const ROOMS = [
   {
     id: "html",
@@ -32,7 +32,7 @@ const ROOMS = [
     extraSource: "clase-02-javascript (1).html",
   },
 ];
-const QUESTIONS = [
+const LEGACY_QUESTIONS = [
   {
     room: 0,
     title: "Una web sin esqueleto",
@@ -294,4 +294,377 @@ const QUESTIONS = [
     placeholder: "Resultado numérico",
   },
 ];
-if (typeof module !== "undefined") module.exports = { ROOMS, QUESTIONS };
+const PRACTICAL_QUESTIONS = [
+  {
+    room: 0,
+    kind: "order",
+    title: "Reconstruye el documento",
+    story:
+      "El archivo maestro se ha fragmentado en seis bloques. Reordénalos con las flechas del panel.",
+    prompt:
+      "Coloca los bloques para obtener un documento HTML5 con el título en head y el contenido en body.",
+    items: [
+      "<!DOCTYPE html>",
+      '<html lang="es">',
+      "<head><title>Agente web</title></head>",
+      "<body>",
+      "<main><h1>Acceso recuperado</h1></main>",
+      "</body></html>",
+    ],
+    initial: [3, 0, 5, 2, 1, 4],
+    answer: "[0,1,2,3,4,5]",
+    hint: "Empieza con DOCTYPE y html; head va antes de body. Cierra el documento al final.",
+    explanation:
+      "DOCTYPE declara HTML5. html envuelve head y body; el contenido principal queda dentro de body.",
+  },
+  {
+    room: 0,
+    kind: "blanks",
+    title: "Repara el panel de navegación",
+    story:
+      "El menú de la sala tiene tres conexiones rotas. Completa cada hueco y observa el código reparado.",
+    prompt:
+      "Rellena los atributos de un enlace, una imagen y un identificador.",
+    template:
+      '<a {{0}}="#salida">Ir a la salida</a>\n<img {{1}}="llave.png" alt="Llave verde">\n<section {{2}}="salida">Puerta</section>',
+    fields: [
+      "Destino del enlace",
+      "Ruta de la imagen",
+      "Identificador de la sección",
+    ],
+    answer: '["href","src","id"]',
+    hint: "href es el destino de un enlace, src es la ruta de un recurso e id identifica un elemento.",
+    explanation:
+      'El enlace apunta a #salida, la imagen usa src y la sección se identifica con id="salida".',
+  },
+  {
+    room: 0,
+    kind: "order",
+    title: "El recorrido semántico",
+    story:
+      "Un lector de pantalla necesita encontrar las zonas del puesto de control en un orden lógico.",
+    prompt:
+      "Ordena los bloques: cabecera, navegación, contenido principal y pie.",
+    items: [
+      "<header>Estación de rescate</header>",
+      "<nav>Enlaces de la estación</nav>",
+      "<main>Objetivo de la misión</main>",
+      "<footer>Autoría del agente</footer>",
+    ],
+    initial: [2, 3, 0, 1],
+    answer: "[0,1,2,3]",
+    hint: "La cabecera presenta, nav permite moverse, main contiene la misión y footer cierra la página.",
+    explanation:
+      "Las etiquetas semánticas expresan el significado de cada zona. El orden propuesto sigue la lectura de arriba abajo.",
+  },
+  {
+    room: 0,
+    kind: "blanks",
+    title: "Un mensaje legible en cualquier pantalla",
+    story:
+      "El mensaje de emergencia muestra caracteres extraños y no se adapta al móvil.",
+    prompt:
+      "Completa los valores de los metadatos. Escribe los dos nombres pedidos.",
+    template:
+      '<meta charset="{{0}}">\n<meta name="{{1}}" content="width=device-width, initial-scale=1.0">',
+    fields: [
+      "Codificación para acentos y eñes",
+      "Nombre del metadato para el ancho del dispositivo",
+    ],
+    answer: '["UTF-8","viewport"]',
+    hint: "La codificación es UTF-8. El otro metadato se llama viewport.",
+    explanation:
+      "UTF-8 permite representar acentos y eñes. viewport ayuda a que el ancho inicial de la página se adapte al dispositivo.",
+  },
+  {
+    room: 0,
+    kind: "blanks",
+    title: "La ficha del agente",
+    story:
+      "Diseña el esqueleto de la tarjeta que usarás en la misión final. El navegador espera etiquetas coherentes.",
+    prompt: "Escribe los nombres de las etiquetas sin los signos < >.",
+    template:
+      "<main>\n  <{{0}}>Agente web</{{0}}>\n  <{{1}}>Estoy aprendiendo a programar.</{{1}}>\n  <ul><{{2}}>Resolver problemas</{{2}}></ul>\n</main>",
+    fields: [
+      "Encabezado principal",
+      "Párrafo de presentación",
+      "Elemento de una lista",
+    ],
+    answer: '["h1","p","li"]',
+    hint: "El encabezado principal es h1, un párrafo usa p y cada elemento de lista usa li.",
+    explanation:
+      "h1 presenta el título principal; p contiene el párrafo y li se coloca dentro de ul u ol.",
+  },
+  {
+    room: 0,
+    kind: "blanks",
+    title: "El puente entre archivos",
+    story:
+      "La sala está reconstruida. Falta conectar el diseño y el comportamiento antes de salir.",
+    prompt:
+      "Completa la relación de la hoja de estilos, el atributo de ruta del script y su nombre de archivo.",
+    template:
+      '<link rel="{{0}}" href="styles.css">\n<script {{1}}="{{2}}"></script>',
+    fields: [
+      "Relación de la hoja CSS",
+      "Atributo de ruta del script",
+      "Archivo JavaScript llamado app.js",
+    ],
+    answer: '["stylesheet","src","app.js"]',
+    hint: 'El enlace usa rel="stylesheet" y el script se carga mediante src="app.js".',
+    explanation:
+      "link carga la hoja de estilos y script carga JavaScript. Ambos nombres de archivo deben coincidir con los del proyecto.",
+  },
+  {
+    room: 1,
+    kind: "style",
+    title: "Devuelve el color al sistema",
+    story:
+      "El panel de identificación ha perdido el tema de seguridad. Usa los mandos y observa la tarjeta.",
+    prompt: "Consigue fondo negro, texto blanco y esquinas de 20 px.",
+    controls: [
+      {
+        label: "Fondo",
+        property: "background-color",
+        values: ["tomato", "black", "gold"],
+      },
+      {
+        label: "Texto",
+        property: "color",
+        values: ["black", "gold", "white"],
+      },
+      {
+        label: "Esquinas",
+        property: "border-radius",
+        values: ["0px", "8px", "20px"],
+      },
+    ],
+    answer: '["black","white","20px"]',
+    hint: "background-color controla el fondo, color el texto y border-radius las esquinas.",
+    explanation:
+      "El tema utiliza background-color: black; color: white; border-radius: 20px. Cada propiedad cambia una parte distinta.",
+  },
+  {
+    room: 1,
+    kind: "order",
+    title: "Dentro y fuera de la caja",
+    story:
+      "El escáner necesita atravesar las capas de una caja CSS desde el centro hacia fuera.",
+    prompt: "Ordena las capas desde el contenido hasta el espacio exterior.",
+    items: ["content", "padding", "border", "margin"],
+    initial: [3, 1, 0, 2],
+    answer: "[0,1,2,3]",
+    hint: "El contenido está en el centro; lo siguen el espacio interior, el borde y el espacio exterior.",
+    explanation:
+      "El orden es content → padding → border → margin. padding queda dentro del borde y margin, fuera.",
+  },
+  {
+    room: 1,
+    kind: "style",
+    title: "Una fila de controles",
+    story:
+      "El laboratorio tiene tres botones apilados y sin separación. Reconstruye la barra de mandos.",
+    prompt:
+      "Activa Flexbox, reparte el espacio con space-between y añade 16 px entre controles.",
+    controls: [
+      {
+        label: "Distribución",
+        property: "display",
+        values: ["block", "flex", "inline-block"],
+      },
+      {
+        label: "Reparto horizontal",
+        property: "justify-content",
+        values: ["flex-start", "center", "space-between"],
+      },
+      {
+        label: "Separación",
+        property: "gap",
+        values: ["0px", "8px", "16px"],
+      },
+    ],
+    answer: '["flex","space-between","16px"]',
+    hint: "display activa Flexbox; justify-content distribuye el espacio del eje principal y gap separa los elementos.",
+    explanation:
+      "display: flex crea la fila. space-between reparte el espacio libre entre elementos y gap establece la separación mínima.",
+  },
+  {
+    room: 1,
+    kind: "blanks",
+    title: "La clase que responde",
+    story:
+      "Un botón debe cambiar de aspecto cuando pase el ratón. Repara las propiedades y la pseudo-clase.",
+    prompt:
+      "Completa el selector de estado, la propiedad de fondo y la propiedad que suaviza el cambio.",
+    template: ".boton { {{0}}: 0.3s; }\n.boton:{{1}} {\n  {{2}}: tomato;\n}",
+    fields: [
+      "Propiedad para una transición suave",
+      "Pseudo-clase al pasar el cursor",
+      "Propiedad de color de fondo",
+    ],
+    answer: '["transition","hover","background-color"]',
+    hint: "La regla inicial usa transition. El estado es :hover y el fondo se modifica con background-color.",
+    explanation:
+      "transition suaviza el cambio. .boton:hover selecciona el botón al pasar el cursor y background-color modifica su fondo.",
+  },
+  {
+    room: 1,
+    kind: "style",
+    title: "Prepara la pantalla estrecha",
+    story:
+      "En el móvil, los controles deben colocarse en columna y alinearse al centro.",
+    prompt:
+      "Con Flexbox ya activado, elige columna, alineación central y 24 px de espacio interior.",
+    controls: [
+      {
+        label: "Dirección",
+        property: "flex-direction",
+        values: ["row", "row-reverse", "column"],
+      },
+      {
+        label: "Alineación transversal",
+        property: "align-items",
+        values: ["stretch", "flex-start", "center"],
+      },
+      {
+        label: "Espacio interior",
+        property: "padding",
+        values: ["0px", "8px", "24px"],
+      },
+    ],
+    answer: '["column","center","24px"]',
+    hint: "flex-direction decide fila o columna. align-items controla el eje transversal y padding el espacio interior.",
+    explanation:
+      "column apila los controles, align-items: center los centra horizontalmente en esa columna y padding separa el contenido del borde.",
+  },
+  {
+    room: 1,
+    kind: "blanks",
+    title: "El plano responsive",
+    story:
+      "La última regla del laboratorio debe cambiar el menú solo en pantallas de hasta 600 px.",
+    prompt: "Completa la consulta de medios y la dirección del menú.",
+    template: "@{{0}} ({{1}}: 600px) {\n  .menu { flex-direction: {{2}}; }\n}",
+    fields: [
+      "Nombre de la regla @",
+      "Condición de ancho máximo",
+      "Dirección vertical",
+    ],
+    answer: '["media","max-width","column"]',
+    hint: "La regla empieza con @media, comprueba max-width y cambia la dirección a column.",
+    explanation:
+      "@media (max-width: 600px) aplica el bloque hasta 600 px incluidos. flex-direction: column coloca el menú en vertical.",
+  },
+  {
+    room: 2,
+    kind: "trace",
+    title: "Rastrea el marcador",
+    story:
+      "La consola ha perdido sus registros. Ejecuta mentalmente cada actualización del marcador.",
+    prompt: "Escribe las cuatro salidas de consola en su orden.",
+    code: "let puntos = 0;\nconsole.log(puntos);\npuntos = puntos + 10;\nconsole.log(puntos);\npuntos = puntos + 5;\nconsole.log(puntos);\npuntos = puntos - 3;\nconsole.log(puntos);",
+    fields: ["Salida 1", "Salida 2", "Salida 3", "Salida 4"],
+    answer: '["0","10","15","12"]',
+    hint: "Cada asignación utiliza el valor que puntos tenía justo antes: 0, luego +10, después +5 y finalmente −3.",
+    explanation:
+      "La consola muestra 0, 10, 15 y 12. La variable se declara una vez con let y después se actualiza.",
+  },
+  {
+    room: 2,
+    kind: "trace",
+    title: "Texto o número: el detector",
+    story:
+      "Cuatro señales se parecen, pero sus tipos y operaciones son diferentes.",
+    prompt: "Reconstruye las cuatro salidas. Escribe los textos sin comillas.",
+    code: 'console.log(typeof "23.5");\nconsole.log(typeof false);\nconsole.log("12" + "8");\nconsole.log(Number("12") + Number("8"));',
+    fields: [
+      'Tipo de "23.5"',
+      "Tipo de false",
+      "Suma de los textos",
+      "Suma tras convertir",
+    ],
+    answer: '["string","boolean","128","20"]',
+    hint: "Las comillas hacen que 23.5 sea texto. false es lógico. + concatena textos y suma números.",
+    explanation:
+      "Las salidas son string, boolean, 128 y 20. El aspecto de un dato no determina su tipo: las comillas sí cambian cómo se interpreta.",
+  },
+  {
+    room: 2,
+    kind: "trace",
+    title: "Calibra el cálculo",
+    story:
+      "El núcleo calcula un área, un perímetro y dos expresiones. El orden de operaciones importa.",
+    prompt: "Calcula los cuatro resultados del programa.",
+    code: "const base = 8;\nconst altura = 5;\nconsole.log(base * altura);\nconsole.log(2 * (base + altura));\nconsole.log(2 + 3 * 4);\nconsole.log((2 + 3) * 4);",
+    fields: ["Área", "Perímetro", "Sin paréntesis", "Con paréntesis"],
+    answer: '["40","26","14","20"]',
+    hint: "La multiplicación se calcula antes de la suma, salvo que los paréntesis indiquen otro orden.",
+    explanation:
+      "El área es 40 y el perímetro 26. 2 + 3 × 4 vale 14; (2 + 3) × 4 vale 20.",
+  },
+  {
+    room: 2,
+    kind: "trace",
+    title: "Compra bajo vigilancia",
+    story:
+      "El sistema ofrece envío gratuito desde 20 €. Comprueba la lógica en tres compras distintas.",
+    prompt:
+      "Escribe el total final cuando cantidad vale 1, 3 y 4, respectivamente.",
+    code: "const precio = 5;\nconst subtotal = precio * cantidad;\nlet envio = 3;\nif (subtotal >= 20) {\n  envio = 0;\n}\nconsole.log(subtotal + envio);",
+    fields: ["cantidad = 1", "cantidad = 3", "cantidad = 4"],
+    answer: '["8","18","20"]',
+    hint: "Con 1 y 3 unidades no se llega a 20 €, así que se añaden 3 €. Con 4 unidades se alcanza el límite.",
+    explanation:
+      "Los totales son 8, 18 y 20. Es importante probar un subtotal igual al límite, porque >= lo incluye.",
+  },
+  {
+    room: 2,
+    kind: "trace",
+    title: "Puertas AND, OR e igualdad",
+    story:
+      "La seguridad utiliza tres tipos de comparación. Simula cada salida sin confundir sus operadores.",
+    prompt: "Escribe true o false para cada línea.",
+    code: 'console.log(12 >= 12 && 139 >= 140);\nconsole.log(12 >= 30 || true);\nconsole.log(5 === "5");\nconsole.log(5 !== 3);',
+    fields: [
+      "AND (&&)",
+      "OR (||)",
+      "Igualdad estricta",
+      "Desigualdad estricta",
+    ],
+    answer: '["false","true","false","true"]',
+    hint: "&& exige ambos requisitos; || exige al menos uno; === compara valor y tipo.",
+    explanation:
+      'La primera es falsa porque 139 no llega a 140. OR es verdadera por true. 5 y "5" tienen distinto tipo, y 5 es distinto de 3.',
+  },
+  {
+    room: 2,
+    kind: "trace",
+    title: "Auditoría de las edades límite",
+    story:
+      "Última batería del núcleo: verifica todas las fronteras antes de devolver el servicio.",
+    prompt: "Introduce el precio que corresponde a cada edad de prueba.",
+    code: "let precio = 0;\nif (edad < 6) {\n  precio = 0;\n} else if (edad < 16) {\n  precio = 5;\n} else {\n  precio = 8;\n}\nconsole.log(precio);",
+    fields: ["edad = 5", "edad = 6", "edad = 15", "edad = 16"],
+    answer: '["0","5","5","8"]',
+    hint: "Menores de 6: 0 €. De 6 a 15: 5 €. Desde 16: 8 €.",
+    explanation:
+      "Las fronteras dan 0, 5, 5 y 8. Una cadena if / else if / else ejecuta solo la primera rama cuya condición se cumple.",
+  },
+];
+const EXPANDED_QUESTIONS = ROOMS.flatMap((_, room) => {
+  const base = LEGACY_QUESTIONS.filter((q) => q.room === room);
+  const practical = PRACTICAL_QUESTIONS.filter((q) => q.room === room);
+  return base.flatMap((q, i) => [
+    {
+      ...q,
+      explanation: q.explanation.replace(
+        / ¡(?:Primer|Segundo|Tercer) fragmento recuperado.*$/,
+        "",
+      ),
+    },
+    practical[i],
+  ]);
+});
+let QUESTIONS = EXPANDED_QUESTIONS;
+if (typeof module !== "undefined")
+  module.exports = { ROOMS, QUESTIONS, LEGACY_QUESTIONS, EXPANDED_QUESTIONS };
