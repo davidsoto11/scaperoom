@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#12121b" />
+    <meta
+      name="description"
+      content="Una misión, tres salas y una web que rescatar. Escape room educativo de HTML, CSS y JavaScript."
+    />
+    <title>Código de fuga · Escape room web</title>
+    <link rel="icon" href="assets/key.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="questions.js" defer></script>
+    <script src="game.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Código de fuga, inicio"
+        ><span class="brand-icon">&lt;/&gt;</span> CÓDIGO<span
+          class="brand-light"
+          >DE FUGA</span
+        ></a
+      ><span class="header-label"
+        ><span class="live-dot"></span> ESCAPE ROOM · DESARROLLO WEB</span
+      ><span class="edition">VOL. 01 <span>↗</span></span>
+    </header>
+    <main id="main" tabindex="-1"></main>
+    <footer class="site-footer">
+      <span>HECHO PARA APRENDER. DISEÑADO PARA ESCAPAR.</span
+      ><span>HTML <i>×</i> CSS <i>×</i> JAVASCRIPT</span>
+    </footer>
+    <div id="announcer" class="sr-only" role="status" aria-live="polite"></div>
+    <noscript
+      ><p class="notice">
+        Activa JavaScript en tu navegador para entrar en el escape room.
+      </p></noscript
+    >
+  </body>
+</html>

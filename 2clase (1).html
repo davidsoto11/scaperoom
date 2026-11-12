@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 2: Dale Estilo a tu Web con CSS</title>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --accent: #06b6d4;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --code-bg: #090d16;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4c1d95, #1e1b4b);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #a78bfa, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-start;
+            background-color: #111827;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) #111827;
+        }
+
+        nav button {
+            flex: 0 0 auto;
+            background: none;
+            border: none;
+            padding: 1rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        nav button:hover {
+            color: var(--accent);
+        }
+
+        nav button.active {
+            color: #a78bfa;
+            border-bottom-color: #a78bfa;
+        }
+
+        main {
+            max-width: 1050px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #a78bfa;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        p, ul, ol {
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: rgba(139, 92, 246, 0.15);
+            border-left: 4px solid var(--primary);
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Comparador Visual */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid { grid-template-columns: 1fr; }
+
+            nav {
+                flex-wrap: wrap;
+                overflow-x: visible;
+            }
+
+            nav button {
+                flex: 1 1 auto;
+                min-width: 45%;
+                padding: 0.75rem 0.55rem;
+                font-size: 0.8rem;
+                white-space: normal;
+                line-height: 1.25;
+            }
+        }
+
+        .demo-box {
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .demo-no-css {
+            background: #ffffff;
+            color: #000000;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .demo-no-css a { color: blue; }
+
+        .demo-with-css {
+            background: linear-gradient(135deg, #18181b, #27272a);
+            color: white;
+            text-align: center;
+            border: 1px solid #3f3f46;
+        }
+
+        .demo-with-css button {
+            background: linear-gradient(90deg, #ec4899, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .demo-with-css button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Editor de Código */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 800px) {
+            .editor-container { grid-template-columns: 1fr; }
+        }
+
+        .code-input-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .code-input-wrapper label, .preview-wrapper label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        textarea {
+            width: 100%;
+            height: 420px;
+            background-color: var(--code-bg);
+            color: #38bdf8;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        iframe {
+            width: 100%;
+            height: 420px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+        }
+
+        .btn-action {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            background-color: #090d16;
+        }
+
+        .property-card {
+            background: #0f172a;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .property-card code {
+            color: #38bdf8;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 700px) {
+            .lesson-grid { grid-template-columns: 1fr; }
+        }
+
+        .lesson-card {
+            background: #111827;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .lesson-card h3 {
+            color: #a78bfa;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-card p:last-child,
+        .lesson-card ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .code-example {
+            overflow-x: auto;
+            background: var(--code-bg);
+            color: #c4b5fd;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+
+        .box-model-demo {
+            width: min(100%, 310px);
+            margin: 1.5rem auto;
+            padding: 1.2rem;
+            border: 8px solid #f59e0b;
+            background: #164e63;
+            outline: 3px dashed #ec4899;
+            text-align: center;
+        }
+
+        .flex-demo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            background: #0f172a;
+            border: 1px dashed var(--accent);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .flex-demo span {
+            flex: 1 1 100px;
+            padding: 0.8rem;
+            text-align: center;
+            background: #7c3aed;
+            border-radius: 8px;
+        }
+
+        .responsive-note {
+            border-left: 4px solid #06b6d4;
+            background: rgba(6, 182, 212, 0.12);
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li::before {
+            content: '☐';
+            color: #38bdf8;
+            margin-right: 0.6rem;
+        }
+
+        .step-card {
+            position: relative;
+            background: #111827;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.25rem 1.25rem 4.5rem;
+            margin: 1rem 0;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 1.2rem;
+            top: 1.2rem;
+            width: 2.2rem;
+            height: 2.2rem;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .folder-tree {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            color: #c4b5fd;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+
+        .teacher-tip {
+            background: rgba(245, 158, 11, 0.12);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .mini-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .mini-table th,
+        .mini-table td {
+            text-align: left;
+            border: 1px solid var(--border);
+            padding: 0.7rem;
+            vertical-align: top;
+        }
+
+        .mini-table th {
+            background: #0f172a;
+            color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎨 Clase 2: CSS y Tu Propio "Link-in-Bio"</h1>
+        <p>Aprende a transformar webs aburridas en diseños con estilo visual</p>
+    </header>
+
+    <nav>
+        <button class="active" onclick="openTab(event, 'por-que-css')">1. ¿Para qué sirve CSS?</button>
+        <button onclick="openTab(event, 'superpoderes')">2. Los 4 Cambios Clave</button>
+        <button onclick="openTab(event, 'fundamentos')">3. Fundamentos que debes conocer</button>
+        <button onclick="openTab(event, 'layout')">4. Colocar elementos</button>
+        <button onclick="openTab(event, 'cascada')">5. Cascada y errores</button>
+        <button onclick="openTab(event, 'desde-cero')">6. Crear un proyecto desde cero</button>
+        <button onclick="openTab(event, 'efecto-hover')">7. Truco: Efectos al Pasar el Ratón</button>
+        <button onclick="openTab(event, 'editor-linktree')">8. PROYECTO: Tu Linktree</button>
+        <button onclick="openTab(event, 'retos')">9. Retos Extra</button>
+    </nav>
+
+    <main>
+        <!-- SECCIÓN 1: ¿Por qué CSS? -->
+        <section id="por-que-css" class="tab-content active">
+            <h2>1. ¿Qué es CSS y por qué lo necesitas?</h2>
+            <p><strong>CSS</strong> (<em>Cascading Style Sheets</em>) es el lenguaje que define el <strong>diseño visual</strong> de una web: colores, tamaños, fuentes, posiciones y animaciones.</p>
+
+            <div class="highlight-box">
+                💡 <strong>Diferencia rápida:</strong> HTML coloca el texto y las imágenes (el esqueleto). CSS decide cómo se ven y dónde se ubican (la ropa, la pintura y el estilo).
+            </div>
+
+            <h3>Compara el mismo contenido con y sin CSS:</h3>
+            <div class="comparison-grid">
+                <div class="demo-box demo-no-css">
+                    <h3>❌ Solo HTML</h3>
+                    <p>Texto plano, fuentes por defecto y aspecto antiguo.</p>
+                    <a href="#">Un enlace aburrido</a><br><br>
+                    <button>Botón gris grisáceo</button>
+                </div>
+                <div class="demo-box demo-with-css">
+                    <h3 style="color: #a78bfa;">✨ Con CSS Aplicado</h3>
+                    <p style="color: #cbd5e1;">Colores modernos, bordes suaves y estilo actual.</p>
+                    <button>¡Botón con estilo!</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Los 4 Cambios Clave -->
+        <section id="superpoderes" class="tab-content">
+            <h2>2. Las 4 Propiedades de CSS más importantes</h2>
+            <p>Con solo estas cuatro propiedades puedes cambiar por completo el aspecto de cualquier sitio:</p>
+
+            <div class="property-card">
+                <code>background-color: #1e293b;</code>
+                <p>Cambia el color de fondo. Puedes usar colores en inglés (<code>black</code>, <code>red</code>) o códigos Hexadecimales (<code>#ff0055</code>).</p>
+            </div>
+
+            <div class="property-card">
+                <code>color: #ffffff;</code>
+                <p>Cambia el color del texto.</p>
+            </div>
+
+            <div class="property-card">
+                <code>border-radius: 20px;</code>
+                <p>Redondea las esquinas de los botones, imágenes o recuadros. Cuanto mayor sea el número, más redondo será.</p>
+            </div>
+
+            <div class="property-card">
+                <code>padding: 15px;</code>
+                <p>Añade espacio interno alrededor del texto para que los elementos no queden apretados.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Fundamentos -->
+        <section id="fundamentos" class="tab-content">
+            <h2>3. Fundamentos de CSS: cómo leer una regla</h2>
+            <p>Una regla CSS tiene tres partes: el <strong>selector</strong> indica a qué elemento afecta, la <strong>propiedad</strong> indica qué queremos cambiar y el <strong>valor</strong> indica cómo.</p>
+
+            <pre class="code-example">selector {
+    propiedad: valor;
+}
+
+p {
+    color: tomato;
+    font-size: 18px;
+}</pre>
+
+            <div class="lesson-grid">
+                <article class="lesson-card">
+                    <h3>1. Selectores</h3>
+                    <p>Podemos seleccionar por etiqueta, clase o identificador.</p>
+                    <pre class="code-example">p { color: white; }        /* etiqueta */
+.destacado { color: gold; } /* clase */
+#titulo { font-size: 2rem; } /* id */</pre>
+                    <p><strong>Consejo:</strong> usa clases para repetir estilos y reserva los identificadores para elementos únicos.</p>
+                </article>
+                <article class="lesson-card">
+                    <h3>2. Agrupar y reutilizar</h3>
+                    <p>Varias clases pueden aplicarse al mismo elemento para combinar estilos.</p>
+                    <pre class="code-example">.tarjeta { padding: 1rem; }
+.importante { border: 2px solid gold; }
+
+&lt;div class="tarjeta importante"&gt;...</pre>
+                </article>
+                <article class="lesson-card">
+                    <h3>3. Unidades</h3>
+                    <p><code>px</code> es una medida fija; <code>%</code> depende del elemento padre; <code>rem</code> depende del tamaño base de letra; <code>vw</code> y <code>vh</code> dependen de la ventana.</p>
+                    <pre class="code-example">width: 80%;
+padding: 1rem;
+font-size: 18px;</pre>
+                </article>
+                <article class="lesson-card">
+                    <h3>4. Comentarios y orden</h3>
+                    <p>Los comentarios ayudan a explicar el código y el navegador no los muestra.</p>
+                    <pre class="code-example">/* Colores principales */
+body { background: #111827; }</pre>
+                    <p>Si dos reglas tienen la misma fuerza, normalmente gana la que aparece más abajo.</p>
+                </article>
+            </div>
+
+            <div class="highlight-box">
+                🧠 <strong>Pregunta para la clase:</strong> ¿qué selector usarías para cambiar todos los párrafos y cuál para cambiar solo el párrafo con la clase <code>.aviso</code>?
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: Modelo de caja y layout -->
+        <section id="layout" class="tab-content">
+            <h2>4. Modelo de caja y colocación de elementos</h2>
+            <p>En CSS, casi todo se comporta como una caja. Entender sus partes evita que los elementos queden demasiado juntos o se descoloquen.</p>
+
+            <div class="box-model-demo">
+                Contenido
+                <br><small>padding → borde → margen</small>
+            </div>
+
+            <div class="lesson-grid">
+                <article class="lesson-card">
+                    <h3>El modelo de caja</h3>
+                    <ul>
+                        <li><strong>content:</strong> el texto o imagen.</li>
+                        <li><strong>padding:</strong> espacio interior.</li>
+                        <li><strong>border:</strong> línea que rodea la caja.</li>
+                        <li><strong>margin:</strong> espacio exterior entre cajas.</li>
+                    </ul>
+                    <pre class="code-example">.tarjeta {
+    margin: 20px;
+    padding: 16px;
+    border: 2px solid white;
+}</pre>
+                </article>
+                <article class="lesson-card">
+                    <h3>Flexbox en 4 propiedades</h3>
+                    <p>Flexbox permite colocar elementos en fila o columna y repartir el espacio disponible.</p>
+                    <pre class="code-example">.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}</pre>
+                </article>
+            </div>
+
+            <div class="flex-demo" aria-label="Ejemplo visual de Flexbox">
+                <span>Elemento 1</span><span>Elemento 2</span><span>Elemento 3</span>
+            </div>
+
+            <div class="responsive-note">
+                📱 <strong>Diseño responsive:</strong> una web debe funcionar en móvil y ordenador. Usa porcentajes, <code>max-width</code>, <code>flex-wrap</code> y media queries cuando sea necesario.
+            </div>
+            <pre class="code-example">@media (max-width: 600px) {
+    h1 { font-size: 1.5rem; }
+    .menu { flex-direction: column; }
+}</pre>
+        </section>
+
+        <!-- SECCIÓN 5: Cascada y buenas prácticas -->
+        <section id="cascada" class="tab-content">
+            <h2>5. La cascada y buenas prácticas</h2>
+            <p>La “C” de CSS significa <strong>cascading</strong>: cuando varias reglas afectan a un elemento, el navegador decide cuál tiene prioridad.</p>
+            <div class="lesson-grid">
+                <article class="lesson-card">
+                    <h3>Prioridad orientativa</h3>
+                    <ol>
+                        <li>Estilos en línea: <code>style="..."</code></li>
+                        <li>Identificadores: <code>#menu</code></li>
+                        <li>Clases y pseudo-clases: <code>.boton:hover</code></li>
+                        <li>Etiquetas: <code>button</code></li>
+                    </ol>
+                </article>
+                <article class="lesson-card">
+                    <h3>Errores frecuentes</h3>
+                    <ul class="checklist">
+                        <li>Olvidar el punto delante de una clase.</li>
+                        <li>Olvidar el punto y coma final.</li>
+                        <li>Escribir mal una propiedad.</li>
+                        <li>No cerrar una llave <code>}</code>.</li>
+                        <li>Usar demasiados estilos en línea.</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="highlight-box">
+                🔎 <strong>Herramienta profesional:</strong> con “Inspeccionar” del navegador puedes seleccionar un elemento, ver sus estilos y probar cambios sin modificar todavía el archivo.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: Proyecto desde cero -->
+        <section id="desde-cero" class="tab-content">
+            <h2>6. Crear un proyecto HTML + CSS desde cero</h2>
+            <p>En esta práctica vamos a crear una tarjeta de presentación sencilla. El objetivo es aprender el flujo de trabajo completo: crear una carpeta, crear dos archivos, conectarlos y comprobar el resultado.</p>
+
+            <div class="highlight-box">
+                🎯 <strong>Resultado final:</strong> una página con un título, una descripción, un botón y estilos guardados en un archivo CSS independiente.
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">1</span>
+                <h3>Crear la carpeta del proyecto</h3>
+                <p>Crea una carpeta llamada <code>mi-primera-web</code> en el Escritorio o dentro de tu carpeta de clase.</p>
+                <div class="folder-tree">📁 mi-primera-web/</div>
+                <p>Es importante que los dos archivos siguientes estén dentro de esta misma carpeta.</p>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">2</span>
+                <h3>Crear el archivo HTML</h3>
+                <p>Abre Visual Studio Code, Bloc de notas o el editor que utilicéis. Crea un archivo llamado exactamente <code>index.html</code>.</p>
+                <p>Escribe esta estructura básica:</p>
+                <pre class="code-example">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Mi primera web&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;main class="tarjeta"&gt;
+        &lt;h1&gt;Hola, soy Ana&lt;/h1&gt;
+        &lt;p&gt;Estoy aprendiendo HTML y CSS.&lt;/p&gt;
+        &lt;a class="boton" href="#"&gt;Ver mi perfil&lt;/a&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                <p>Guarda el archivo dentro de <code>mi-primera-web</code>.</p>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">3</span>
+                <h3>Crear el archivo CSS</h3>
+                <p>En la misma carpeta, crea un segundo archivo llamado exactamente <code>styles.css</code>.</p>
+                <p>Añade estos estilos:</p>
+                <pre class="code-example">* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: #e0f2fe;
+    font-family: Arial, sans-serif;
+}
+
+.tarjeta {
+    width: min(90%, 420px);
+    padding: 2rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    color: #7c3aed;
+}
+
+.boton {
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    color: white;
+    background-color: #7c3aed;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background-color: #ec4899;
+}</pre>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">4</span>
+                <h3>Comprobar la conexión</h3>
+                <p>La conexión entre HTML y CSS se hace con esta línea dentro de <code>&lt;head&gt;</code>:</p>
+                <pre class="code-example">&lt;link rel="stylesheet" href="styles.css"&gt;</pre>
+                <p>Significa: “carga el archivo CSS que está en esta misma carpeta”. El nombre debe coincidir exactamente, incluyendo mayúsculas y minúsculas.</p>
+                <div class="teacher-tip">⚠️ Si el archivo se llama <code>style.css</code> pero en HTML escribes <code>styles.css</code>, los estilos no aparecerán.</div>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">5</span>
+                <h3>Abrir la página en el navegador</h3>
+                <ol>
+                    <li>Guarda los dos archivos.</li>
+                    <li>Abre la carpeta <code>mi-primera-web</code>.</li>
+                    <li>Haz doble clic en <code>index.html</code>.</li>
+                    <li>Comprueba que aparece la tarjeta morada.</li>
+                </ol>
+                <p>Si usáis Visual Studio Code, también podéis instalar <strong>Live Server</strong>, hacer clic derecho sobre <code>index.html</code> y elegir <strong>Open with Live Server</strong>.</p>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">6</span>
+                <h3>Hacer cambios y observar qué ocurre</h3>
+                <p>Modifica una cosa cada vez y actualiza el navegador:</p>
+                <table class="mini-table">
+                    <thead><tr><th>Cambio</th><th>Archivo</th><th>Qué se practica</th></tr></thead>
+                    <tbody>
+                        <tr><td>Cambiar el nombre</td><td><code>index.html</code></td><td>Contenido HTML</td></tr>
+                        <tr><td>Cambiar el color del título</td><td><code>styles.css</code></td><td>Propiedad <code>color</code></td></tr>
+                        <tr><td>Hacer la tarjeta más redonda</td><td><code>styles.css</code></td><td><code>border-radius</code></td></tr>
+                        <tr><td>Cambiar el texto del botón</td><td><code>index.html</code></td><td>Enlaces y etiquetas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">7</span>
+                <h3>Revisar los errores</h3>
+                <ul class="checklist">
+                    <li>¿La carpeta contiene <code>index.html</code> y <code>styles.css</code>?</li>
+                    <li>¿El enlace está dentro de <code>&lt;head&gt;</code>?</li>
+                    <li>¿El nombre del archivo coincide exactamente?</li>
+                    <li>¿Has guardado los cambios antes de actualizar?</li>
+                    <li>¿Has cerrado todas las llaves <code>{ }</code> y etiquetas HTML?</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                🚀 <strong>Reto final:</strong> cambia el nombre, los colores y el texto del botón. Después crea una segunda tarjeta con otra clase, por ejemplo <code>.tarjeta-verde</code>, sin borrar la primera.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: Efecto Hover -->
+        <section id="efecto-hover" class="tab-content">
+            <h2>7. El Secreto de la Interactividad: <code>:hover</code></h2>
+            <p>La pseudo-clase <code>:hover</code> permite cambiar el estilo de un botón o enlace cuando el usuario pasa el cursor por encima.</p>
+
+            <div class="highlight-box">
+                <p><strong>Ejemplo de código:</strong></p>
+                <pre style="background: #090d16; padding: 1rem; border-radius: 8px; color: #38bdf8;">
+button {
+    background-color: #8b5cf6;
+    transition: 0.3s; /* Para que el cambio sea suave */
+}
+
+button:hover {
+    background-color: #ec4899; /* Cambia a rosa al pasar el ratón */
+    transform: scale(1.08);    /* Crece un 8% */
+}</pre>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem;">👇 <strong>Pasa el ratón sobre este botón para probar el efecto:</strong></p>
+            <div style="text-align: center; margin-top: 1rem;">
+                <button style="
+                    background: #8b5cf6; 
+                    color: white; 
+                    border: none; 
+                    padding: 1rem 2rem; 
+                    font-size: 1.2rem; 
+                    font-weight: bold; 
+                    border-radius: 50px; 
+                    cursor: pointer; 
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+                " onmouseover="this.style.background='#ec4899'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='#8b5cf6'; this.style.transform='scale(1)';" onclick="alert('¡Efecto hover activado!')">
+                    ¡Pasa el ratón por aquí!
+                </button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 8: Editor Interactivo Linktree -->
+        <section id="editor-linktree" class="tab-content">
+            <h2>8. Proyecto Práctico: Tu Tarjeta "Link-in-Bio"</h2>
+            <p>Modifica el código a la izquierda para personalizar tu foto, nombre, redes y colores en tiempo real:</p>
+
+            <div class="editor-container">
+                <div class="code-input-wrapper">
+                    <label for="codeEditor">Código HTML + CSS (Editable):</label>
+                    <textarea id="codeEditor" oninput="updatePreview()"><!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid #8b5cf6;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 10px 0 5px 0;
+            color: #ffffff;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .link-btn {
+            display: block;
+            background-color: #1e293b;
+            color: #38bdf8;
+            text-decoration: none;
+            padding: 14px;
+            margin: 12px auto;
+            max-width: 280px;
+            border-radius: 12px;
+            font-weight: bold;
+            border: 1px solid #334155;
+            transition: all 0.3s;
+        }
+
+        /* EFECTO AL PASAR EL RATÓN */
+        .link-btn:hover {
+            background-color: #8b5cf6;
+            color: white;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <img class="avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=Gamer" alt="Foto de perfil">
+    
+    <h1>@TuUsuarioGamer</h1>
+    <p>🎮 Streamer & Creador de Contenido</p>
+
+    <a class="link-btn" href="#">🔴 Canal de Twitch</a>
+    <a class="link-btn" href="#">🎵 Mi Playlist de Spotify</a>
+    <a class="link-btn" href="#">📸 Instagram</a>
+    <a class="link-btn" href="#">💬 Servidor de Discord</a>
+
+</body>
+</html></textarea>
+                    <button class="btn-action" onclick="copyCode()">📋 Copiar código para guardar</button>
+                </div>
+
+                <div class="preview-wrapper">
+                    <label>Resultado Visual en Vivo:</label>
+                    <iframe id="previewFrame"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 9: Retos Extra -->
+        <section id="retos" class="tab-content">
+            <h2>9. 🚀 Actividades propuestas</h2>
+            <p>Realiza las siguientes actividades modificando el código de tu perfil. Guarda los cambios y comprueba el resultado en el navegador después de cada actividad.</p>
+
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="background: #1e293b; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #38bdf8;">
+                    <strong>Actividad 1: Personaliza tu perfil</strong>
+                    <p style="margin-bottom:0; font-size:0.95rem; color:#cbd5e1;">Cambia el nombre de usuario, la descripción y el avatar. Para modificar el avatar, cambia el texto después de <code>seed=</code> en la URL de la imagen por tu nombre.</p>
+                </li>
+                <li style="background: #1e293b; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #a78bfa;">
+                    <strong>Actividad 2: Diseña tu propio tema visual</strong>
+                    <p style="margin-bottom:0; font-size:0.95rem; color:#cbd5e1;">Elige una combinación de colores diferente. Cambia el fondo, el color de los textos y el estilo de los botones usando <code>background-color</code>, <code>color</code> y <code>border</code>.</p>
+                </li>
+                <li style="background: #1e293b; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #ec4899;">
+                    <strong>Actividad 3: Añade un enlace y un efecto</strong>
+                    <p style="margin-bottom:0; font-size:0.95rem; color:#cbd5e1;">Añade un quinto botón con un enlace a una red social o página web. Después, modifica <code>.link-btn:hover</code> para que cambie de color y se desplace ligeramente al pasar el ratón.</p>
+                </li>
+            </ul>
+
+            <div class="highlight-box">
+                ✅ <strong>Entrega:</strong> muestra tu perfil terminado en el navegador y explica qué propiedades CSS has cambiado en cada actividad.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Clase 2: CSS Interactivo y Diseño Web Práctico</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+
+            if(tabId === 'editor-linktree') {
+                updatePreview();
+            }
+        }
+
+        function updatePreview() {
+            const code = document.getElementById('codeEditor').value;
+            const iframe = document.getElementById('previewFrame');
+            const documentContent = iframe.contentDocument || iframe.contentWindow.document;
+            documentContent.open();
+            documentContent.write(code);
+            documentContent.close();
+        }
+
+        function copyCode() {
+            const codeText = document.getElementById('codeEditor');
+            codeText.select();
+            document.execCommand('copy');
+            alert('¡Código copiado al portapapeles!');
+        }
+
+        window.onload = function() {
+            updatePreview();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Primera clase de JavaScript: apuntes paso a paso con Visual Studio Code, ejemplos y cinco ejercicios."><title>Clase 01 · Primeros pasos con JavaScript</title><style>
+:root{--ink:#1b2634;--muted:#536173;--accent:#285e57;--line:#dfe5e5;--paper:#fff;--bg:#f4f6f4;--nav:#122c2c;--lime:#e3ef85}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #c77c1c;outline-offset:4px}button{font:inherit;cursor:pointer}.skip{position:fixed;top:-100px;left:20px;background:white;z-index:10;padding:12px}.skip:focus{top:15px}.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:var(--nav);color:#fff;overflow-y:auto;padding:34px 22px;z-index:3}.brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:700;letter-spacing:.02em}.js-mark{background:var(--lime);color:#163b36;border-radius:9px;padding:8px 11px;font-size:20px;font-weight:900}.side-label{color:#bbcdca;text-transform:uppercase;font-size:11px;letter-spacing:.16em;margin:32px 12px 12px}.sidebar nav a{display:flex;gap:12px;color:#d8e5e2;text-decoration:none;padding:8px 12px;font-size:13px;line-height:1.5;border-radius:6px}.sidebar nav a:hover,.sidebar nav a[aria-current]{background:#244440;color:white}.sidebar nav a span{color:#d0df8c;font-variant-numeric:tabular-nums}.side-foot{font-size:12px;color:#aec5c0;margin:26px 12px 0;padding-top:18px;border-top:1px solid #37514d}.page{margin-left:258px;padding:44px clamp(24px,5vw,90px) 65px;max-width:1430px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:12px;letter-spacing:.08em;color:var(--muted);margin-bottom:32px}.print-button{border:1px solid #cfd9d6;border-radius:7px;padding:8px 15px;background:white;color:var(--ink);font-size:13px;letter-spacing:0}.hero{position:relative;background:#dfebe3;border:1px solid #d0dfd3;border-radius:18px;padding:clamp(25px,4vw,52px);overflow:hidden;margin-bottom:32px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}.hero h1{font-size:clamp(34px,4.1vw,56px);line-height:1.08;letter-spacing:-.045em;margin:0 0 23px;max-width:720px}.hero .lead{font-size:19px;line-height:1.6;max-width:650px;margin-bottom:26px}.tags{display:flex;gap:9px;flex-wrap:wrap}.tags span{font-size:12px;padding:4px 10px;border-radius:5px;border:1px solid #bdcfc3;background:#eef5ee}section{padding:36px clamp(22px,3.1vw,44px);background:var(--paper);border:1px solid var(--line);border-radius:14px;margin:0 0 24px;scroll-margin-top:24px}.section-heading{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}.number{display:flex;align-items:center;justify-content:center;flex:0 0 37px;height:37px;background:#edf3e8;color:var(--accent);font-size:13px;font-weight:800;border-radius:8px;margin-top:2px}h2{font-size:27px;line-height:1.3;letter-spacing:-.025em;margin:0}h3{font-size:19px;line-height:1.45;margin:28px 0 10px;letter-spacing:-.01em}p{margin:0 0 16px}li{margin-bottom:8px}ul,ol{padding-left:25px;margin:12px 0 22px}strong{font-weight:700}.cards{display:grid;gap:14px;margin:24px 0}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.cards>div{background:#f6f8f6;border:1px solid #e3e8e3;padding:18px;border-radius:9px}.cards h3{margin:0 0 7px;font-size:17px}.cards p{font-size:14px;line-height:1.65;margin:0}.callout,.rule,.try{background:#eff5f0;border-left:4px solid #66916c;border-radius:0 8px 8px 0;margin:22px 0;padding:18px 21px;font-size:15px}.callout p:last-child,.callout ul:last-child,.callout ol:last-child,.rule p:last-child{margin-bottom:0}.rule{background:#f5f3eb;border-color:#ad9865}.try{background:#f4f4e2;border-color:#969f4f}.steps li{padding-left:5px;margin-bottom:15px}.file-list{background:#f6f8f7;border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin:24px 0;font-size:14px}.file-list>div{display:flex;flex-wrap:wrap;gap:10px 25px;padding:9px 0 0 18px}.file-list span{color:var(--muted)}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}p code,li code,td code,.callout code,.file-list code,.check code{font-size:.88em;background:#edf2ef;color:#1d514a;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}kbd{font-size:.85em;padding:2px 5px;border:1px solid #cbd5d1;box-shadow:0 1px 0 #cbd5d1;border-radius:4px;white-space:nowrap}.code{margin:20px 0 12px;border-radius:10px;overflow:hidden;background:#152a32;color:#f3f8f7}.code figcaption{background:#203a42;padding:9px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#c8dfdc;border-bottom:1px solid #345059}.copy{color:#e2eec6;background:#2d4850;border:1px solid #52716f;border-radius:4px;padding:2px 9px;font:12px system-ui;min-width:65px}.code pre{margin:0;padding:20px;overflow-x:auto;font-size:13px;line-height:1.85;tab-size:2}.code code{font:inherit}.output{background:#f6f8f5;border:1px solid #dfe8da;border-radius:8px;padding:13px 18px;margin:0 0 22px}.output>span{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#52684d;font-weight:750}.output pre{font-size:13px;line-height:1.8;margin:8px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.workflow{display:flex;flex-wrap:wrap;align-items:center;gap:13px;margin:23px 0;color:var(--accent);font-size:14px}.workflow span{border:1px solid #ccdbd0;padding:7px 14px;border-radius:6px;background:#f4f8f2}.table-wrap{max-width:100%;overflow-x:auto;margin:20px 0 24px}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.65;text-align:left}th{background:#eef3ef;color:#35564e;font-size:12px;font-weight:750}th,td{padding:12px 14px;border-bottom:1px solid #e1e7e2;vertical-align:top}td:first-child{font-weight:500}details{border:1px solid var(--line);border-radius:8px;padding:13px 17px;margin:20px 0 0;font-size:14px}summary{cursor:pointer;font-weight:650;color:var(--accent)}.sources{padding-top:5px}.exercise{border:1px solid #dce5df;border-radius:10px;padding:25px;margin:20px 0}.exercise-top{display:flex;align-items:center;gap:12px}.exercise-top>span{background:#244f47;color:#e8f0ab;width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}.exercise-top p{margin:0;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.09em}.exercise h3{margin-top:15px;font-size:21px}.check{border-top:1px dashed #c9d8cc;padding-top:15px;margin:18px 0 0;font-size:14px;color:#375d4e}.delivery{background:#edf3e8;border-radius:9px;padding:23px;margin:28px 0 0;font-size:15px}.delivery h3{margin-top:0}.checklist{list-style-type:square}.footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;padding:0 3px}.footer a{text-decoration:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:1500px){.page{margin-right:auto}}@media(max-width:1050px){.sidebar{width:215px;padding-left:13px;padding-right:13px}.page{margin-left:215px;padding-left:24px;padding-right:24px}.three{grid-template-columns:1fr}.cards>div{padding:14px}.hero h1{font-size:42px}}@media(max-width:760px){.sidebar{position:static;width:auto;padding:18px 20px}.sidebar nav,.side-label,.side-foot{display:none}.page{margin:0;padding:23px 14px}.topbar{margin-bottom:18px;letter-spacing:.02em}.hero{padding:26px 23px;border-radius:12px}.hero h1{font-size:38px}.hero .lead{font-size:17px}section{padding:27px 20px}.section-heading{gap:11px}h2{font-size:24px}.number{flex-basis:32px;height:32px}body{font-size:16px}.exercise{padding:19px 16px}.workflow{gap:7px}.workflow span{padding:5px 8px}.code pre{font-size:12px;padding:17px}th,td{padding:10px}.footer{display:block}.footer span{display:block}}
+@media print{@page{size:A4;margin:16mm 15mm}html{scroll-behavior:auto}body{background:white;color:#172229;font:10pt/1.5 system-ui,sans-serif}.sidebar,.topbar,.copy,.skip,.footer a{display:none!important}.page{margin:0;padding:0;max-width:none}.hero{background:#f1f4ee;border-radius:0;padding:20px;margin-bottom:20px}.hero h1{font-size:30pt}.hero .lead{font-size:12pt}.eyebrow{font-size:9pt}.tags span{font-size:8pt}section{border:0;border-top:1px solid #becdc0;border-radius:0;padding:20px 0 6px;margin:0;break-inside:auto}.section-heading{break-after:avoid;margin-bottom:13px}h2{font-size:18pt}h3{font-size:12pt;break-after:avoid}p{orphans:3;widows:3;margin-bottom:10px}li{margin-bottom:5px}table{font-size:9pt}.table-wrap{overflow:visible}tr{break-inside:avoid}thead{display:table-header-group}.code{background:#f3f5f4;color:#132c33;border:1px solid #ccd5d2;break-inside:avoid}.code figcaption{background:#e7eeea;color:#24433b;padding:5px 10px}.code pre{font-size:8pt;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px}.output{break-inside:avoid;padding:9px 12px}.output pre{font-size:8.5pt}.callout,.try,.rule{break-inside:avoid;font-size:9pt;padding:12px 14px}.cards{break-inside:avoid}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.cards p{font-size:9pt}.exercise{break-inside:avoid;padding:17px;margin:15px 0}.exercise h3{font-size:13pt}.exercise-top p{font-size:8pt}.check{font-size:9pt}.delivery{break-inside:avoid;font-size:9pt}.footer{margin-top:15px;font-size:8pt}details{display:none}.workflow{break-inside:avoid;font-size:9pt}a{color:inherit;text-decoration:none}#ejercicios{break-before:page}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body><a class="skip" href="#contenido">Saltar al contenido</a>
+<aside class="sidebar" aria-label="Índice de la clase"><div class="brand"><span class="js-mark" aria-hidden="true">JS</span><span>CUADERNO DE<br>PROGRAMACIÓN</span></div><p class="side-label">Clase 01 / Contenido</p><nav aria-label="Secciones"><a href="#inicio"><span>01</span>Empezar</a><a href="#proyecto"><span>02</span>Preparar el proyecto</a><a href="#consola"><span>03</span>Usar la consola</a><a href="#sintaxis"><span>04</span>Reglas de escritura</a><a href="#variables"><span>05</span>Variables</a><a href="#tipos"><span>06</span>Tipos de datos</a><a href="#calculos"><span>07</span>Cálculos</a><a href="#textos"><span>08</span>Textos y números</a><a href="#condiciones"><span>09</span>Condiciones</a><a href="#practica"><span>10</span>Ejemplo completo</a><a href="#errores"><span>11</span>Resolver errores</a><a href="#repaso"><span>12</span>Guía rápida</a><a href="#ejercicios"><span>13</span>5 ejercicios</a></nav><p class="side-foot">Escribe. Guarda. Recarga.<br>Comprueba el resultado.</p></aside>
+<div class="page"><div class="topbar"><span>PROGRAMACIÓN WEB / NIVEL INICIAL</span><button type="button" class="print-button">Imprimir / PDF</button></div>
+<header class="hero"><p class="eyebrow">Clase 01 · Apuntes de JavaScript</p><h1>Tu primer programa<br>empieza aquí.</h1><p class="lead">Aprende a escribir y ejecutar JavaScript paso a paso con Visual Studio Code y el navegador.</p><div class="tags"><span>Desde cero</span><span>Ejemplos guiados</span><span>5 ejercicios finales</span></div></header>
+<main id="contenido"><section id="inicio" aria-labelledby="h-inicio"><div class="section-heading"><span class="number">01</span><h2 id="h-inicio">Qué vamos a hacer</h2></div>
+<p>JavaScript es un lenguaje de programación. Permite escribir instrucciones para realizar cálculos, trabajar con datos y añadir comportamiento a una página web: responder a un clic, comprobar un formulario o actualizar un resultado.</p>
+<div class="cards three"><div><h3>HTML</h3><p>Define el contenido y su estructura: títulos, párrafos, botones…</p></div><div><h3>CSS</h3><p>Define la presentación: colores, tamaños y distribución.</p></div><div><h3>JavaScript</h3><p>Define el comportamiento y las operaciones que realiza el programa.</p></div></div>
+<p>En esta clase escribirás el código en <strong>Visual Studio Code</strong> y lo ejecutarás en el <strong>navegador</strong>. La consola del navegador será el lugar donde verás los resultados.</p>
+<div class="callout"><strong>Al terminar podrás</strong><ul><li>Crear y conectar un archivo HTML y un archivo JavaScript.</li><li>Mostrar mensajes y leer errores en la consola.</li><li>Guardar datos con <code>const</code> y <code>let</code>.</li><li>Combinar textos, hacer cálculos y tomar decisiones con <code>if / else</code>.</li></ul></div>
+<h3>Antes de empezar</h3><p>Necesitas Visual Studio Code instalado y un navegador de escritorio, como Chrome, Edge o Firefox. Si falta el editor, descárgalo desde <a href="https://code.visualstudio.com/">code.visualstudio.com</a>, completa la instalación y ábrelo.</p>
+<p>Para esta práctica basta con el editor y el navegador. No hace falta instalar Node.js, usar la terminal ni añadir extensiones. Visual Studio Code incluye soporte para JavaScript.</p>
+</section><section id="proyecto" aria-labelledby="h-proyecto"><div class="section-heading"><span class="number">02</span><h2 id="h-proyecto">Preparar el proyecto paso a paso</h2></div>
+<ol class="steps"><li><strong>Crea una carpeta.</strong> En el Escritorio o en Documentos, crea una carpeta llamada <code>clase-01-javascript</code>.</li>
+<li><strong>Abre la carpeta en Visual Studio Code.</strong> Selecciona <em>Archivo → Abrir carpeta…</em> (<em>File → Open Folder…</em>) y elige la carpeta anterior. Si aparece el aviso de confianza, confirma solo si se trata de la carpeta que acabas de crear.</li>
+<li><strong>Localiza el Explorador.</strong> Es el panel lateral donde aparecen los archivos. Si está oculto, usa <em>Ver → Explorador</em> (<em>View → Explorer</em>).</li>
+<li><strong>Crea el HTML.</strong> En el Explorador, pulsa el icono <em>Nuevo archivo</em> (<em>New File</em>) y escribe <code>index.html</code>.</li>
+<li><strong>Crea el JavaScript.</strong> Repite el paso anterior con el nombre <code>app.js</code>. Los dos archivos deben quedar en la misma carpeta.</li></ol>
+<div class="file-list"><strong>clase-01-javascript</strong><div><code>index.html</code><span>La página que abrirá el navegador.</span></div><div><code>app.js</code><span>Las instrucciones de JavaScript.</span></div></div>
+<h3>1. Escribe el contenido de index.html</h3><p>Abre <code>index.html</code> en el editor y escribe este contenido completo:</p>
+<figure class="code"><figcaption><span>index.html</span></figcaption><pre><code data-language="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;es&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Mi primera clase de JavaScript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Mi primera página con JavaScript&lt;/h1&gt;
+  &lt;p&gt;Abre la consola del navegador para ver los resultados.&lt;/p&gt;
+
+  &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+<p>La etiqueta <code>&lt;script src="app.js"&gt;&lt;/script&gt;</code> conecta la página con el archivo de JavaScript. <code>src</code> indica su ruta. Al estar en la misma carpeta, basta con escribir <code>app.js</code>. La colocamos al final del cuerpo, antes de <code>&lt;/body&gt;</code>.</p>
+<h3>2. Escribe el primer mensaje en app.js</h3>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">console.log(&quot;Hola, JavaScript&quot;);</code></pre></figure>
+<p><code>console.log()</code> muestra un valor en la consola. El texto se coloca entre comillas y dentro de los paréntesis. El punto y coma termina la instrucción.</p>
+<h3>3. Guarda los dos archivos</h3><p>Usa <em>Archivo → Guardar todo</em> (<em>File → Save All</em>). Para guardar solo el archivo abierto, pulsa <kbd>Ctrl</kbd> + <kbd>S</kbd> en Windows o Linux, o <kbd>⌘</kbd> + <kbd>S</kbd> en macOS.</p>
+<h3>4. Abre la página en el navegador</h3><ol class="steps"><li>En Visual Studio Code, haz clic derecho sobre <code>index.html</code> y selecciona <em>Mostrar en el Explorador de archivos</em> o <em>Mostrar en Finder</em> (<em>Reveal in File Explorer / Finder</em>).</li><li>En esa ventana, haz clic derecho en <code>index.html</code> y usa <em>Abrir con</em> para elegir el navegador. También puedes arrastrar el archivo a una ventana del navegador.</li><li>Comprueba que aparece el título <strong>Mi primera página con JavaScript</strong>.</li></ol>
+<div class="callout"><strong>Comprueba los nombres.</strong> Deben ser exactamente <code>index.html</code> y <code>app.js</code>. Evita nombres como <code>app.js.txt</code> o <code>App.js</code>. No abras <code>app.js</code> directamente en el navegador: abre <code>index.html</code>.</div>
+</section><section id="consola" aria-labelledby="h-consola"><div class="section-heading"><span class="number">03</span><h2 id="h-consola">Ver y actualizar los resultados</h2></div>
+<ol class="steps"><li>En el navegador, haz clic derecho sobre la página y selecciona <em>Inspeccionar</em> (<em>Inspect</em>).</li><li>Dentro de las herramientas que se abren, selecciona la pestaña <strong>Consola</strong> (<strong>Console</strong>).</li><li>Recarga la página con el botón de recarga del navegador. Debe aparecer <code>Hola, JavaScript</code>.</li><li>Vuelve a Visual Studio Code, cambia el mensaje por <code>Hola, estoy aprendiendo JavaScript</code> y guarda <code>app.js</code>.</li><li>Vuelve al navegador y recarga. Comprueba que aparece el mensaje nuevo.</li></ol>
+<div class="workflow"><span>Escribir</span><b aria-hidden="true">→</b><span>Guardar</span><b aria-hidden="true">→</b><span>Recargar</span><b aria-hidden="true">→</b><span>Comprobar</span></div>
+<p>Repite este proceso cada vez que cambies el código. Si se acumulan mensajes antiguos, pulsa el botón de limpiar la consola. En las herramientas del navegador, puedes desactivar <em>Preservar registro</em> (<em>Preserve log</em>) para que no se conserven al recargar.</p>
+<div class="callout"><strong>Dos lugares diferentes.</strong> El título HTML aparece en la página; los mensajes de <code>console.log()</code> aparecen en la consola del navegador. La terminal y el panel de salida de Visual Studio Code no muestran estos mensajes.</div>
+<h3>Una instrucción detrás de otra</h3><p>Para esta prueba, sustituye todo el contenido de <code>app.js</code> por lo siguiente:</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">console.log(&quot;Primer mensaje&quot;);
+console.log(&quot;Segundo mensaje&quot;);
+console.log(2 + 3);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Primer mensaje
+Segundo mensaje
+5</pre></div>
+<p>En este programa las instrucciones se ejecutan de arriba abajo. <code>"2 + 3"</code> sería un texto; <code>2 + 3</code>, sin comillas, es una operación cuyo resultado es <code>5</code>.</p>
+<div class="rule"><strong>Cómo usar los ejemplos siguientes</strong><p>Cada bloque de ejemplo es independiente. Sustituye el contenido de <code>app.js</code> por el bloque completo que quieras probar, guarda y recarga. Así evitas declarar dos veces la misma variable al acumular ejemplos.</p></div>
+</section><section id="sintaxis" aria-labelledby="h-sintaxis"><div class="section-heading"><span class="number">04</span><h2 id="h-sintaxis">Reglas básicas de escritura</h2></div>
+<ul><li><strong>Mayúsculas y minúsculas importan.</strong> <code>nombre</code> y <code>Nombre</code> son identificadores distintos. Escribe <code>console.log</code>, respetando las minúsculas.</li><li><strong>Usa comillas para el texto.</strong> Puedes usar <code>"Hola"</code> o <code>'Hola'</code>, pero debes cerrar con el mismo tipo de comilla. Usa las comillas rectas del teclado.</li><li><strong>Escribe una instrucción por línea.</strong> En estos apuntes terminaremos las instrucciones simples con <code>;</code> para mantener un estilo uniforme.</li><li><strong>Revisa los signos por parejas.</strong> Los paréntesis <code>()</code>, las llaves <code>{}</code> y las comillas deben abrirse y cerrarse.</li><li><strong>Utiliza la sangría.</strong> El código dentro de un bloque se escribe un poco más a la derecha para que se lea mejor.</li></ul>
+<h3>Comentarios</h3><p>Un comentario es una anotación del código que no se ejecuta. <code>//</code> comenta hasta el final de la línea; <code>/* ... */</code> permite comentar varias líneas.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">// Mostrar un mensaje de bienvenida.
+console.log(&quot;Bienvenida a la clase&quot;);
+
+/* Este comentario puede
+   ocupar varias líneas. */
+console.log(&quot;Vamos a programar&quot;);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Bienvenida a la clase
+Vamos a programar</pre></div>
+<p>Para ordenar la sangría en Visual Studio Code, haz clic derecho dentro del editor y elige <em>Dar formato al documento</em> (<em>Format Document</em>).</p>
+</section><section id="variables" aria-labelledby="h-variables"><div class="section-heading"><span class="number">05</span><h2 id="h-variables">Guardar información: const y let</h2></div>
+<p>Una variable permite guardar un valor y utilizarlo mediante un nombre. Para crearla, escribimos una declaración.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const nombre = &quot;Lucía&quot;;
+let puntos = 10;
+
+console.log(nombre);
+console.log(puntos);
+
+puntos = 15;
+console.log(puntos);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Lucía
+10
+15</pre></div>
+<div class="table-wrap"><table><thead><tr><th>Parte</th><th>Qué significa</th></tr></thead><tbody><tr><td><code>const</code> / <code>let</code></td><td>Declara una variable.</td></tr><tr><td><code>nombre</code> / <code>puntos</code></td><td>Es el nombre con el que accedemos al valor.</td></tr><tr><td><code>=</code></td><td>Asigna el valor que aparece a la derecha.</td></tr><tr><td><code>"Lucía"</code> / <code>10</code></td><td>Es el valor inicial.</td></tr></tbody></table></div>
+<h3>¿Cuándo se usa cada una?</h3><ul><li>Usa <code>const</code> cuando no vayas a reasignar la variable. Debes darle un valor al declararla.</li><li>Usa <code>let</code> cuando necesites asignarle otro valor durante el programa.</li></ul>
+<p>En <code>puntos = 15;</code> cambiamos el valor sin escribir otra vez <code>let</code>. El signo <code>=</code> asigna; no comprueba si dos valores son iguales.</p>
+<div class="callout"><strong>Regla práctica:</strong> empieza con <code>const</code> y elige <code>let</code> cuando el valor necesite cambiar. Si intentas hacer <code>nombre = "Mario";</code> después de declarar <code>nombre</code> con <code>const</code>, se producirá un error.</div>
+<h3>Nombres que se entiendan</h3><p>Utiliza nombres como <code>precioEntrada</code>, <code>cantidad</code> o <code>totalCompra</code>. No pueden llevar espacios ni empezar por un número. En estos apuntes usaremos <em>camelCase</em>: primera palabra en minúscula y las siguientes con inicial mayúscula.</p>
+<p><code>let totalCompra = 0;</code> es válido. <code>let total compra = 0;</code> y <code>let 2total = 0;</code> no lo son. Tampoco puedes usar palabras reservadas, como <code>const</code>, como nombre de variable.</p>
+</section><section id="tipos" aria-labelledby="h-tipos"><div class="section-heading"><span class="number">06</span><h2 id="h-tipos">Textos, números y valores lógicos</h2></div>
+<p>Un valor tiene un tipo. Empezaremos con tres:</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th>Ejemplo</th><th>Uso</th></tr></thead><tbody><tr><td><code>string</code></td><td><code>"Ana"</code></td><td>Texto, escrito entre comillas.</td></tr><tr><td><code>number</code></td><td><code>24</code>, <code>12.5</code></td><td>Números, sin comillas. Los decimales se escriben con punto.</td></tr><tr><td><code>boolean</code></td><td><code>true</code>, <code>false</code></td><td>Verdadero o falso, sin comillas.</td></tr></tbody></table></div>
+<p><code>typeof</code> permite consultar el tipo de un valor.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const ciudad = &quot;Sevilla&quot;;
+const temperatura = 23.5;
+const estaAbierto = true;
+
+console.log(typeof ciudad);
+console.log(typeof temperatura);
+console.log(typeof estaAbierto);
+console.log(typeof &quot;23.5&quot;);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>string
+number
+boolean
+string</pre></div>
+<p><code>23.5</code> y <code>"23.5"</code> se parecen, pero el primero es un número y el segundo es texto. También son distintos <code>false</code> y <code>"false"</code>.</p>
+<h3>Un dato sin valor inicial</h3>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">let apodo;
+console.log(apodo);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>undefined</pre></div>
+<p><code>undefined</code> indica aquí que la variable existe, pero todavía no le hemos asignado un valor. Conviene inicializar las variables antes de usarlas en cálculos.</p>
+</section><section id="calculos" aria-labelledby="h-calculos"><div class="section-heading"><span class="number">07</span><h2 id="h-calculos">Hacer cálculos</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Operador</th><th>Operación</th><th>Ejemplo y resultado</th></tr></thead><tbody><tr><td><code>+</code></td><td>Suma</td><td><code>8 + 2</code> → <code>10</code></td></tr><tr><td><code>-</code></td><td>Resta</td><td><code>8 - 2</code> → <code>6</code></td></tr><tr><td><code>*</code></td><td>Multiplicación</td><td><code>8 * 2</code> → <code>16</code></td></tr><tr><td><code>/</code></td><td>División</td><td><code>8 / 2</code> → <code>4</code></td></tr><tr><td><code>%</code></td><td>Resto de una división</td><td><code>9 % 2</code> → <code>1</code></td></tr></tbody></table></div>
+<p>Primero se resuelven las multiplicaciones y divisiones; después, las sumas y restas. Usa paréntesis para indicar qué operación debe hacerse antes.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">console.log(2 + 3 * 4);
+console.log((2 + 3) * 4);
+
+const precioCuaderno = 4;
+const unidades = 3;
+const totalCuadernos = precioCuaderno * unidades;
+
+console.log(&quot;Total de la compra:&quot;, totalCuadernos);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>14
+20
+Total de la compra: 12</pre></div>
+<p>La coma dentro de <code>console.log()</code> permite mostrar varios valores en un mismo mensaje. El texto de la etiqueta no forma parte del cálculo.</p>
+<h3>Actualizar un valor a partir de su valor anterior</h3>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">let saldo = 20;
+const gasto = 6;
+
+saldo = saldo - gasto;
+console.log(&quot;Saldo restante:&quot;, saldo);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Saldo restante: 14</pre></div>
+<p>Primero se calcula <code>saldo - gasto</code> con los valores actuales. Después, el resultado se guarda en <code>saldo</code>.</p>
+</section><section id="textos" aria-labelledby="h-textos"><div class="section-heading"><span class="number">08</span><h2 id="h-textos">Combinar texto y números</h2></div>
+<p>Con textos, el operador <code>+</code> une cadenas. Esta operación se llama <strong>concatenación</strong>.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const nombre = &quot;Sara&quot;;
+const edad = 19;
+
+console.log(&quot;Hola, &quot; + nombre);
+console.log(&quot;Me llamo &quot; + nombre + &quot; y tengo &quot; + edad + &quot; años.&quot;);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Hola, Sara
+Me llamo Sara y tengo 19 años.</pre></div>
+<p>Los espacios se escriben dentro de las comillas. Si unes <code>"Hola" + "Sara"</code>, obtienes <code>HolaSara</code>.</p>
+<h3>El error de sumar textos</h3>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const primerTexto = &quot;10&quot;;
+const segundoTexto = &quot;5&quot;;
+
+console.log(primerTexto + segundoTexto);
+console.log(Number(primerTexto) + Number(segundoTexto));</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>105
+15</pre></div>
+<p><code>Number()</code> convierte estos textos numéricos en números. Sin la conversión, <code>+</code> concatena. Un texto que no representa un número, como <code>Number("hola")</code>, produce <code>NaN</code>, que indica un resultado numérico no válido.</p>
+<div class="callout"><strong>Antes de calcular:</strong> comprueba si el dato lleva comillas. Usa números sin comillas para las cantidades que escribas directamente en el código.</div>
+</section><section id="condiciones" aria-labelledby="h-condiciones"><div class="section-heading"><span class="number">09</span><h2 id="h-condiciones">Tomar decisiones con if y else</h2></div>
+<p>Una comparación devuelve <code>true</code> o <code>false</code>. Podemos usar ese resultado para elegir qué instrucciones se ejecutan.</p>
+<div class="table-wrap"><table><thead><tr><th>Operador</th><th>Significado</th><th>Ejemplo</th></tr></thead><tbody><tr><td><code>&gt;</code></td><td>Mayor que</td><td><code>8 &gt; 5</code> → <code>true</code></td></tr><tr><td><code>&lt;</code></td><td>Menor que</td><td><code>8 &lt; 5</code> → <code>false</code></td></tr><tr><td><code>&gt;=</code></td><td>Mayor o igual que</td><td><code>5 &gt;= 5</code> → <code>true</code></td></tr><tr><td><code>&lt;=</code></td><td>Menor o igual que</td><td><code>4 &lt;= 5</code> → <code>true</code></td></tr><tr><td><code>===</code></td><td>Igualdad estricta: mismo valor y tipo</td><td><code>5 === "5"</code> → <code>false</code></td></tr><tr><td><code>!==</code></td><td>Desigualdad estricta</td><td><code>5 !== 3</code> → <code>true</code></td></tr></tbody></table></div>
+<p>En esta clase usaremos <code>===</code> para comparar igualdad. Recuerda: <code>=</code> sirve para asignar.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const temperatura = 28;
+
+if (temperatura &gt;= 25) {
+  console.log(&quot;Hace calor&quot;);
+} else {
+  console.log(&quot;La temperatura es suave&quot;);
+}</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Hace calor</pre></div>
+<ol><li>Se evalúa la condición <code>temperatura &gt;= 25</code>, escrita entre paréntesis.</li><li>Si es <code>true</code>, se ejecuta el bloque de <code>if</code>.</li><li>Si es <code>false</code>, se ejecuta el bloque de <code>else</code>.</li></ol>
+<p>Las llaves delimitan cada bloque. En este ejemplo se muestra un solo mensaje, porque solo se ejecuta una de las dos ramas.</p>
+<div class="try"><strong>Comprueba el límite.</strong> Cambia <code>28</code> por <code>24</code>, guarda y recarga. Después prueba con <code>25</code>. Con <code>24</code> debe aparecer <em>La temperatura es suave</em>; con <code>25</code>, <em>Hace calor</em>.</div>
+</section><section id="practica" aria-labelledby="h-practica"><div class="section-heading"><span class="number">10</span><h2 id="h-practica">Ejemplo completo: una compra</h2></div>
+<p>Vamos a unir variables, operaciones, textos y una condición. Una libreta cuesta 5 € y se compran 4 unidades. Si el importe de los productos alcanza los 20 €, el envío es gratuito; en otro caso, cuesta 3 €.</p>
+<ol class="steps"><li>Abre <code>app.js</code> y sustituye su contenido por el código completo.</li><li>Guarda y recarga <code>index.html</code> en el navegador.</li><li>Compara la consola con el resultado indicado.</li><li>Cambia <code>cantidad</code> a <code>3</code> y vuelve a probar.</li></ol>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const producto = &quot;Libreta&quot;;
+const precio = 5;
+const cantidad = 4;
+const subtotal = precio * cantidad;
+let gastosEnvio = 3;
+
+if (subtotal &gt;= 20) {
+  gastosEnvio = 0;
+}
+
+const total = subtotal + gastosEnvio;
+
+console.log(&quot;Producto:&quot;, producto);
+console.log(&quot;Subtotal:&quot;, subtotal);
+console.log(&quot;Envío:&quot;, gastosEnvio);
+console.log(&quot;Total:&quot;, total);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Producto: Libreta
+Subtotal: 20
+Envío: 0
+Total: 20</pre></div>
+<p><code>gastosEnvio</code> se declara con <code>let</code> porque puede cambiar. El <code>if</code> también puede escribirse sin <code>else</code>: si la condición es falsa, su bloque se omite y el envío conserva el valor <code>3</code>.</p>
+<div class="table-wrap"><table><thead><tr><th>Cantidad</th><th>Subtotal</th><th>Envío</th><th>Total esperado</th></tr></thead><tbody><tr><td>4</td><td>20</td><td>0</td><td>20</td></tr><tr><td>3</td><td>15</td><td>3</td><td>18</td></tr><tr><td>1</td><td>5</td><td>3</td><td>8</td></tr></tbody></table></div>
+<p>Comprobar varios casos ayuda a detectar errores. Aquí interesa probar un importe igual al límite y otro inferior.</p>
+</section><section id="errores" aria-labelledby="h-errores"><div class="section-heading"><span class="number">11</span><h2 id="h-errores">Qué hacer cuando algo falla</h2></div>
+<p>Lee primero el mensaje de la consola. Si señala <code>app.js:4</code>, se refiere a la línea 4 de ese archivo. El fallo puede estar en esa línea o justo antes, por ejemplo una comilla sin cerrar.</p>
+<div class="table-wrap"><table><thead><tr><th>Síntoma</th><th>Qué revisar</th></tr></thead><tbody><tr><td>No aparece ningún mensaje.</td><td>Guarda <code>app.js</code>, recarga el navegador y verifica el nombre en <code>src="app.js"</code>. Asegúrate de que la consola no tenga filtros activos que oculten los mensajes.</td></tr><tr><td><code>SyntaxError</code></td><td>Busca comillas, paréntesis o llaves sin cerrar, o símbolos mal escritos.</td></tr><tr><td><code>ReferenceError</code></td><td>Comprueba que la variable esté declarada antes de usarla y que su nombre coincida exactamente.</td></tr><tr><td><code>Assignment to constant variable</code></td><td>Has intentado reasignar una variable declarada con <code>const</code>. Si su valor debe cambiar, declárala con <code>let</code>.</td></tr><tr><td><code>Identifier ... has already been declared</code></td><td>Puede que hayas pegado varios ejemplos con el mismo nombre de variable. Conserva solo el ejemplo que estás probando.</td></tr><tr><td>Aparece <code>105</code> en lugar de <code>15</code>.</td><td>Estás uniendo textos. Comprueba los tipos y utiliza <code>Number()</code> si los valores son textos numéricos.</td></tr><tr><td>La página muestra el título, pero el archivo JS no se carga.</td><td>Comprueba que ambos archivos estén en la misma carpeta. Revisa si la consola muestra un error de archivo no encontrado.</td></tr></tbody></table></div>
+<h3>Localizar un nombre mal escrito</h3><p>Este bloque contiene un error intencionado:</p>
+<figure class="code"><figcaption><span>app.js · ejemplo con error</span></figcaption><pre><code data-language="js" data-broken="true">const nombre = &quot;Nora&quot;;
+console.log(nomrbe);</code></pre></figure>
+<p>El nombre declarado es <code>nombre</code>, pero se intenta leer <code>nomrbe</code>. Corrige la segunda línea a <code>console.log(nombre);</code>, guarda y recarga.</p>
+<div class="rule"><strong>Una corrección cada vez.</strong><p>Lee el primer error, revisa la línea indicada, corrige, guarda y recarga. Un error puede impedir que se ejecuten las instrucciones siguientes.</p></div>
+</section><section id="repaso" aria-labelledby="h-repaso"><div class="section-heading"><span class="number">12</span><h2 id="h-repaso">Guía rápida de consulta</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Quiero…</th><th>Escribo…</th></tr></thead><tbody><tr><td>Mostrar un mensaje</td><td><code>console.log("Hola");</code></td></tr><tr><td>Guardar un valor sin reasignarlo</td><td><code>const precio = 12;</code></td></tr><tr><td>Guardar un valor que va a cambiar</td><td><code>let puntos = 0;</code></td></tr><tr><td>Actualizar una variable existente</td><td><code>puntos = puntos + 5;</code></td></tr><tr><td>Consultar un tipo</td><td><code>console.log(typeof precio);</code></td></tr><tr><td>Unir textos</td><td><code>"Hola, " + "Ana"</code></td></tr><tr><td>Convertir un texto numérico</td><td><code>Number("12")</code></td></tr><tr><td>Comparar dos valores</td><td><code>precio === 12</code></td></tr><tr><td>Tomar una decisión</td><td><code>if (precio &gt; 10) { ... } else { ... }</code></td></tr></tbody></table></div>
+<p>La última fila muestra un esquema: sustituye <code>...</code> por las instrucciones de cada bloque.</p>
+<details><summary>Documentación de consulta</summary><ul class="sources"><li><a href="https://code.visualstudio.com/docs/languages/javascript">Visual Studio Code: soporte de JavaScript</a></li><li><a href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Scripting/What_is_JavaScript">MDN: qué es JavaScript</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Variables">MDN: variables</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators">MDN: operadores</a></li><li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/if...else">MDN: if...else</a></li></ul></details>
+</section><section id="ejercicios" aria-labelledby="h-ejercicios"><div class="section-heading"><span class="number">13</span><h2 id="h-ejercicios">Ejercicios</h2></div>
+<p>Resuelve los cinco ejercicios en Visual Studio Code. Utiliza únicamente lo visto en la clase: variables, operadores, <code>Number()</code>, <code>console.log()</code> e <code>if / else</code>. Los datos se escriben directamente en el código.</p>
+<div class="callout"><strong>Preparación de los archivos</strong><ol><li>Mantén <code>index.html</code> y crea, en la misma carpeta, <code>ejercicio-01.js</code>, <code>ejercicio-02.js</code>, <code>ejercicio-03.js</code>, <code>ejercicio-04.js</code> y <code>ejercicio-05.js</code>.</li><li>Para probar el primero, cambia la línea del HTML por <code>&lt;script src="ejercicio-01.js"&gt;&lt;/script&gt;</code>. Para los siguientes, cambia el nombre del archivo.</li><li>Deja una sola etiqueta <code>script</code> en el HTML, guarda los cambios y recarga el navegador después de cada prueba.</li></ol></div>
+<article class="exercise"><div class="exercise-top"><span>01</span><p>Variables y textos</p></div><h3>Tarjeta de presentación</h3><p>Declara tres constantes: <code>nombre</code>, <code>ciudad</code> y <code>aficion</code>. Guarda en ellas los textos que elijas.</p><ol><li>Muestra una frase con este formato: <code>Me llamo Ana, vivo en Málaga y me gusta leer.</code></li><li>Muestra el tipo de cada variable con <code>typeof</code>.</li><li>Cambia los tres datos y comprueba que la frase se actualiza sin modificar el <code>console.log()</code> que la construye.</li></ol><p class="check"><strong>Comprobación:</strong> deben aparecer una frase completa, con espacios y puntuación, y tres resultados <code>string</code>.</p></article>
+<article class="exercise"><div class="exercise-top"><span>02</span><p>Operaciones</p></div><h3>El rectángulo</h3><p>Declara <code>base = 8</code> y <code>altura = 5</code> como números. Calcula y guarda el área y el perímetro en otras dos constantes.</p><ul><li>Área: base multiplicada por altura.</li><li>Perímetro: dos veces la suma de base y altura.</li></ul><p>Muestra ambos resultados con una etiqueta que indique qué representa cada uno. Después prueba con base <code>3</code> y altura <code>2</code>.</p><p class="check"><strong>Comprobación:</strong> con 8 y 5, área <code>40</code> y perímetro <code>26</code>. Con 3 y 2, área <code>6</code> y perímetro <code>10</code>.</p></article>
+<article class="exercise"><div class="exercise-top"><span>03</span><p>Reasignación con let</p></div><h3>Marcador de puntos</h3><p>Declara una variable <code>puntos</code> con valor inicial <code>0</code>. Modifica esa misma variable siguiendo este orden:</p><ol><li>Suma 10 puntos.</li><li>Suma otros 5 puntos.</li><li>Resta 3 puntos.</li></ol><p>Muestra el valor inicial y el resultado después de cada cambio. No vuelvas a declarar la variable en cada paso.</p><p class="check"><strong>Comprobación:</strong> la consola debe mostrar los valores <code>0</code>, <code>10</code>, <code>15</code> y <code>12</code>, en ese orden.</p></article>
+<article class="exercise"><div class="exercise-top"><span>04</span><p>Conversión de tipos</p></div><h3>Dos precios escritos como texto</h3><p>Declara <code>precioUno = "12"</code> y <code>precioDos = "8"</code>. Conserva las comillas en los datos originales.</p><ol><li>Muestra qué ocurre al usar <code>+</code> directamente con ambos textos.</li><li>Convierte cada texto con <code>Number()</code> y guarda los resultados en dos constantes nuevas.</li><li>Calcula el total numérico y muéstralo.</li><li>Añade un comentario que explique por qué los dos resultados son diferentes.</li></ol><p class="check"><strong>Comprobación:</strong> la unión de textos produce <code>128</code> y la suma numérica produce <code>20</code>. Con <code>"15"</code> y <code>"4"</code>, deben obtenerse <code>154</code> y <code>19</code>.</p></article>
+<article class="exercise"><div class="exercise-top"><span>05</span><p>Condiciones</p></div><h3>Una entrada con descuento</h3><p>Una entrada cuesta 10 €. Las personas menores de 18 años pagan 6 €. A partir de los 18 años, el precio es de 10 €.</p><ol><li>Declara una constante <code>edad</code> con el valor <code>16</code>.</li><li>Declara una variable <code>precioEntrada</code> con el valor <code>10</code>.</li><li>Utiliza un <code>if</code> para aplicar el precio de <code>6</code> cuando corresponda.</li><li>Muestra la edad y el precio final con etiquetas claras.</li><li>Repite la prueba con las edades <code>17</code>, <code>18</code> y <code>25</code>.</li></ol><p class="check"><strong>Comprobación:</strong> para 16 y 17 años, el precio es <code>6</code>; para 18 y 25 años, es <code>10</code>. El límite de 18 años debe resolverse correctamente.</p></article>
+<div class="delivery"><h3>Revisión antes de entregar</h3><ul class="checklist"><li>Los cinco archivos contienen el código de su ejercicio.</li><li>Cada archivo se ha probado desde <code>index.html</code>, sin errores en la consola.</li><li>Las salidas coinciden con los casos de comprobación.</li><li>Los nombres de las variables son claros y el código está ordenado.</li></ul><p>Entrega la carpeta <code>clase-01-javascript</code> con el HTML, el archivo de práctica <code>app.js</code> y los cinco ejercicios. Si se solicita un único archivo, comprime la carpeta en formato ZIP.</p></div>
+</section></main><footer class="footer"><span>JavaScript · Clase 01 · Primeros pasos</span><a href="#contenido">Volver al principio ↑</a></footer></div><div id="status" class="sr-only" role="status" aria-live="polite"></div>
+<script>
+document.querySelector('.print-button').addEventListener('click', () => window.print());
+document.querySelectorAll('.code').forEach(figure => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'copy';
+  button.textContent = 'Copiar';
+  button.setAttribute('aria-label', 'Copiar código de ' + figure.querySelector('figcaption span').textContent);
+  figure.querySelector('figcaption').append(button);
+  button.addEventListener('click', async () => {
+    const source = figure.querySelector('code').textContent;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(source);
+      } else {
+        const area = document.createElement('textarea');
+        area.value = source;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.append(area);
+        area.select();
+        const copied = document.execCommand('copy');
+        area.remove();
+        button.focus();
+        if (!copied) throw new Error('copy');
+      }
+      button.textContent = 'Copiado';
+      document.getElementById('status').textContent = 'Código copiado.';
+    } catch {
+      button.textContent = 'Selecciona';
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(figure.querySelector('code'));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.getElementById('status').textContent = 'Código seleccionado. Usa la opción Copiar del navegador.';
+    }
+    setTimeout(() => { button.textContent = 'Copiar'; }, 2200);
+  });
+});
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.sidebar nav a').forEach(a => a.removeAttribute('aria-current'));
+        const link = document.querySelector('.sidebar nav a[href="#' + entry.target.id + '"]');
+        if (link) link.setAttribute('aria-current', 'location');
+      }
+    });
+  }, {rootMargin: '-10% 0px -65% 0px'});
+  document.querySelectorAll('main section').forEach(section => observer.observe(section));
+}
+</script></body></html>

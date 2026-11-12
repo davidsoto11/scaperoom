@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase Introductoria a HTML5</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        nav button:hover {
+            color: var(--primary);
+        }
+
+        nav button.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        h3 {
+            margin: 1.5rem 0 0.75rem;
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+
+        p, ul, ol {
+            margin-bottom: 1rem;
+            color: var(--text);
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Editor de código interactivo */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .code-input-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .code-input-wrapper label, .preview-wrapper label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        textarea {
+            width: 100%;
+            height: 350px;
+            background-color: var(--code-bg);
+            color: #f8fafc;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95rem;
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+            resize: vertical;
+            line-height: 1.4;
+        }
+
+        iframe {
+            width: 100%;
+            height: 350px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: white;
+        }
+
+        .btn-action {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .btn-action:hover {
+            background-color: var(--primary-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            background-color: white;
+        }
+
+        .tag-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tag-card {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .tag-card code {
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            color: var(--primary-dark);
+        }
+
+        .inline-code {
+            background: #e2e8f0;
+            border-radius: 4px;
+            padding: 0.1rem 0.35rem;
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .example-image {
+            width: 100%;
+            max-width: 520px;
+            display: block;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>💻 Curso de Programación Web: Introducción a HTML</h1>
+        <p>Aprende las bases de la estructura de internet paso a paso</p>
+    </header>
+
+    <nav>
+        <button class="active" onclick="openTab(event, 'concepto')">1. ¿Qué es HTML?</button>
+        <button onclick="openTab(event, 'estructura')">2. Estructura Básica</button>
+        <button onclick="openTab(event, 'etiquetas')">3. Etiquetas Clave</button>
+        <button onclick="openTab(event, 'practica')">4. Demo Interactiva</button>
+        <button onclick="openTab(event, 'ejercicio')">5. Ejercicio Práctico</button>
+        <button onclick="openTab(event, 'semantica')">6. HTML Semántico</button>
+        <button onclick="openTab(event, 'proyecto')">7. Mini Proyecto</button>
+    </nav>
+
+    <main>
+        <!-- SECCIÓN 1: ¿Qué es HTML? -->
+        <section id="concepto" class="tab-content active">
+            <h2>1. ¿Qué es HTML?</h2>
+            <p><strong>HTML</strong> significa <em>HyperText Markup Language</em> (Lenguaje de Marcado de Hipertexto).</p>
+            
+            <div class="highlight-box">
+                💡 <strong>Idea Clave:</strong> HTML <strong>no</strong> es un lenguaje de programación con lógica compleja (como Python o JavaScript). Es un <strong>lenguaje de marcado</strong> que define la estructura y el contenido de una página web.
+            </div>
+
+            <h3>Analogía del Cuerpo Humano en la Web:</h3>
+            <ul>
+                <li><strong>HTML:</strong> Es el <em>esqueleto</em> (define los huesos: títulos, textos, botones, imágenes).</li>
+                <li><strong>CSS:</strong> Es la <em>piel y ropa</em> (aporta diseño, colores y estilos).</li>
+                <li><strong>JavaScript:</strong> Es el <em>sistema nervioso</em> (añade interactividad y movimiento).</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem;">Sintaxis de una etiqueta</h3>
+            <p>HTML funciona mediante <strong>etiquetas</strong> que encierran el contenido:</p>
+            <p style="font-family: monospace; font-size: 1.2rem; background: #e2e8f0; padding: 0.5rem; border-radius: 6px; display: inline-block;">
+                &lt;nombre_etiqueta&gt; Contenido aquí &lt;/nombre_etiqueta&gt;
+            </p>
+
+            <h3>¿Qué hace el navegador con HTML?</h3>
+            <p>Cuando abres una página, el navegador lee el archivo HTML de arriba hacia abajo, interpreta cada etiqueta y construye una representación interna llamada <strong>DOM</strong>. Gracias a esa estructura, CSS puede aplicar estilos y JavaScript puede modificar el contenido.</p>
+
+            <div class="highlight-box">
+                <strong>Importante:</strong> un archivo HTML se puede abrir directamente en el navegador, pero cuando una web crece suele servirse desde un servidor para cargar imágenes, hojas de estilo, scripts y datos externos.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Estructura Básica -->
+        <section id="estructura" class="tab-content">
+            <h2>2. Estructura Fundamental de un Documento</h2>
+            <p>Todo archivo HTML debe tener una estructura mínima obligatoria para que el navegador lo interprete correctamente:</p>
+
+            <div class="tag-list">
+                <div class="tag-card">
+                    <code>&lt;!DOCTYPE html&gt;</code>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Le indica al navegador que estamos usando la versión moderna: HTML5.</p>
+                </div>
+                <div class="tag-card">
+                    <code>&lt;html&gt;</code>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">La etiqueta raíz que envuelve absolutamente todo el código web.</p>
+                </div>
+                <div class="tag-card">
+                    <code>&lt;head&gt;</code>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Contiene metadatos, título de la pestaña e información "invisible" para el usuario.</p>
+                </div>
+                <div class="tag-card">
+                    <code>&lt;body&gt;</code>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">El cuerpo del documento: todo lo que escribas aquí será visible en pantalla.</p>
+                </div>
+            </div>
+
+            <h3>Metadatos habituales</h3>
+            <p>Dentro de <span class="inline-code">&lt;head&gt;</span> se colocan datos que ayudan al navegador, a los buscadores y a los dispositivos móviles:</p>
+            <ul>
+                <li><span class="inline-code">&lt;meta charset="UTF-8"&gt;</span>: permite usar acentos, eñes y caracteres especiales correctamente.</li>
+                <li><span class="inline-code">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span>: adapta la página a móviles y tablets.</li>
+                <li><span class="inline-code">&lt;title&gt;</span>: define el texto que aparece en la pestaña del navegador.</li>
+                <li><span class="inline-code">&lt;link rel="stylesheet" href="estilos.css"&gt;</span>: conecta un archivo CSS externo.</li>
+            </ul>
+        </section>
+
+        <!-- SECCIÓN 3: Etiquetas Principales -->
+        <section id="etiquetas" class="tab-content">
+            <h2>3. Las Etiquetas Más Utilizadas</h2>
+            <p>Para construir la mayoría de los sitios web, solo necesitas dominar estas etiquetas fundamentales:</p>
+
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem;">
+                    <strong>Títulos (Encabezados):</strong>
+                    <code>&lt;h1&gt;</code> al <code>&lt;h6&gt;</code>
+                    <br><small><code>&lt;h1&gt;</code> es el título principal y más grande; <code>&lt;h6&gt;</code> el más pequeño.</small>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Párrafos de texto:</strong>
+                    <code>&lt;p&gt;</code>
+                    <br><small>Se usa para bloques de texto normal.</small>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Enlace a otra página:</strong>
+                    <code>&lt;a href="https://..."&gt;Texto del enlace&lt;/a&gt;</code>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Listas:</strong>
+                    <code>&lt;ul&gt;</code> (desordenada) y <code>&lt;ol&gt;</code> (ordenada), usando <code>&lt;li&gt;</code> para cada ítem.
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Botón interactivo:</strong>
+                    <code>&lt;button&gt;Hacer clic&lt;/button&gt;</code>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Imagen:</strong>
+                    <code>&lt;img src="foto.jpg" alt="Descripción de la imagen"&gt;</code>
+                    <br><small>La etiqueta <code>&lt;img&gt;</code> no necesita cierre y el atributo <code>alt</code> mejora la accesibilidad.</small>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Contenedores:</strong>
+                    <code>&lt;div&gt;</code> y <code>&lt;span&gt;</code>
+                    <br><small>Sirven para agrupar contenido, aunque conviene preferir etiquetas semánticas cuando tengan sentido.</small>
+                </li>
+            </ul>
+
+            <h3>Atributos: información extra para una etiqueta</h3>
+            <p>Los atributos se escriben dentro de la etiqueta de apertura y modifican su comportamiento. Por ejemplo, <span class="inline-code">href</span> indica el destino de un enlace, <span class="inline-code">src</span> indica la ruta de una imagen e <span class="inline-code">id</span> permite identificar un elemento concreto.</p>
+
+            <h3>Cómo añadir una imagen</h3>
+            <p>Si la imagen está en la misma carpeta que el archivo HTML, puedes escribir solo el nombre del archivo dentro del atributo <span class="inline-code">src</span>. En este caso, la imagen se llama <span class="inline-code">gt3.webp</span>.</p>
+            <p style="font-family: monospace; background: #e2e8f0; padding: 0.75rem; border-radius: 6px; overflow-x: auto;">
+                &lt;img src="gt3.webp" alt="Porsche 911 GT3 en color blanco"&gt;
+            </p>
+            <img class="example-image" src="gt3.webp" alt="Porsche 911 GT3 en color blanco">
+            <div class="highlight-box">
+                <strong>Recuerda:</strong> <span class="inline-code">src</span> indica dónde está la imagen y <span class="inline-code">alt</span> describe la imagen para lectores de pantalla o para cuando no pueda cargarse.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: Demo e Interpretación en vivo -->
+        <section id="practica" class="tab-content">
+            <h2>4. Editor e Intérprete HTML en Vivo</h2>
+            <p>Modifica el código de la izquierda y observa instantáneamente los cambios resultantes en el recuadro de la derecha:</p>
+
+            <div class="editor-container">
+                <div class="code-input-wrapper">
+                    <label for="codeEditor">Código HTML (Editable):</label>
+                    <textarea id="codeEditor" oninput="updatePreview()"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Primera Web</title>
+</head>
+<body>
+
+    <h1>¡Hola, Clase de Programación! 👋</h1>
+    <p>Este es mi primer sitio web creado con <strong>HTML5</strong>.</p>
+
+    <h2>Cosas que aprenderé hoy:</h2>
+    <ul>
+        <li>Estructura básica de HTML</li>
+        <li>Etiquetas y párrafos</li>
+        <li>Crear botones interactivos</li>
+        <li>Enlaces, imágenes y listas</li>
+    </ul>
+
+    <p>
+        Visita
+        <a href="https://developer.mozilla.org/es/" target="_blank">
+            MDN Web Docs
+        </a>
+        para seguir aprendiendo.
+    </p>
+
+    <h2>Mi imagen favorita:</h2>
+    <img src="gt3.webp" alt="Porsche 911 GT3 en color blanco" width="350">
+
+    <button onclick="alert('¡Excelente trabajo! Has ejecutado código.')">
+        ¡Haz clic aquí!
+    </button>
+
+</body>
+</html></textarea>
+                    <button class="btn-action" onclick="copyCode()">📋 Copiar este código</button>
+                </div>
+
+                <div class="preview-wrapper">
+                    <label>Resultado Visual en el Navegador:</label>
+                    <iframe id="previewFrame"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: Ejercicio Guiado -->
+        <section id="ejercicio" class="tab-content">
+            <h2>5. Paso a Paso: Tu Turno de Programar</h2>
+            <p>Guía a tus alumnos para que ejecuten su primer archivo HTML en sus propias computadoras:</p>
+
+            <ol>
+                <li><strong>Abre el editor de texto:</strong> Busca el <em>Bloc de notas</em> (Windows) o <em>TextEdit</em> (Mac).</li>
+                <li><strong>Copia el código de ejemplo:</strong> Ve a la pestaña "4. Demo Interactiva" y pulsa en <em>"Copiar este código"</em>.</li>
+                <li><strong>Pega el contenido:</strong> Pégalo en la ventana en blanco de tu editor de texto.</li>
+                <li><strong>Guarda el archivo correctamente:</strong>
+                    <ul>
+                        <li>Haz clic en <strong>Archivo &gt; Guardar como...</strong></li>
+                        <li>Nombra el archivo como <code>mi_pagina.html</code> (es fundamental escribir la extensión <strong>.html</strong>).</li>
+                        <li>En tipo de documento, selecciona <em>"Todos los archivos"</em> si usas Bloc de notas.</li>
+                    </ul>
+                </li>
+                <li><strong>Abre tu sitio web:</strong> Ve a la carpeta donde lo guardaste y haz <strong>doble clic</strong> en el archivo. ¡Se abrirá en tu navegador!</li>
+            </ol>
+
+            <div class="highlight-box" style="margin-top:2rem;">
+                🎯 <strong>Reto para el alumno:</strong> Cambia el título <code>&lt;h1&gt;</code> por tu nombre y añade una lista con tus 3 pasatiempos favoritos.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: HTML Semántico -->
+        <section id="semantica" class="tab-content">
+            <h2>6. HTML Semántico y Buenas Prácticas</h2>
+            <p>El HTML semántico consiste en usar etiquetas que describen el significado del contenido. Esto ayuda a los navegadores, a los buscadores y a las herramientas de accesibilidad.</p>
+
+            <div class="info-grid">
+                <article class="info-card">
+                    <h3>&lt;header&gt;</h3>
+                    <p>Representa la cabecera de una página o sección. Suele contener el título, el logo o una introducción.</p>
+                </article>
+                <article class="info-card">
+                    <h3>&lt;nav&gt;</h3>
+                    <p>Agrupa enlaces de navegación, como menús principales o accesos a secciones importantes.</p>
+                </article>
+                <article class="info-card">
+                    <h3>&lt;main&gt;</h3>
+                    <p>Contiene el contenido principal de la página. Normalmente debe aparecer una sola vez por documento.</p>
+                </article>
+                <article class="info-card">
+                    <h3>&lt;section&gt;</h3>
+                    <p>Divide la página en bloques temáticos, por ejemplo una presentación, una galería o una zona de contacto.</p>
+                </article>
+                <article class="info-card">
+                    <h3>&lt;article&gt;</h3>
+                    <p>Se usa para contenido independiente, como una noticia, una ficha, una reseña o una entrada de blog.</p>
+                </article>
+                <article class="info-card">
+                    <h3>&lt;footer&gt;</h3>
+                    <p>Marca el pie de página o de una sección. Puede incluir autoría, enlaces legales o información de contacto.</p>
+                </article>
+            </div>
+
+            <h3>Buenas prácticas esenciales</h3>
+            <ul>
+                <li>Usa un solo <span class="inline-code">&lt;h1&gt;</span> principal y organiza los títulos en orden lógico.</li>
+                <li>Escribe textos alternativos claros en las imágenes con <span class="inline-code">alt</span>.</li>
+                <li>No uses etiquetas solo por cómo se ven; usa CSS para el diseño y HTML para la estructura.</li>
+                <li>Indenta el código para que sea fácil de leer y revisar.</li>
+                <li>Valida que todas las etiquetas abiertas estén correctamente cerradas.</li>
+            </ul>
+        </section>
+
+        <!-- SECCIÓN 7: Mini Proyecto -->
+        <section id="proyecto" class="tab-content">
+            <h2>7. Mini Proyecto: Página Personal</h2>
+            <p>Para practicar, crea una página personal sencilla. El objetivo es combinar estructura, contenido y algo de organización visual.</p>
+
+            <h3>Requisitos del proyecto</h3>
+            <ol>
+                <li>Un título principal con tu nombre.</li>
+                <li>Un párrafo de presentación de 3 o 4 líneas.</li>
+                <li>Una lista con tus habilidades, intereses o asignaturas favoritas.</li>
+                <li>Una imagen con atributo <span class="inline-code">alt</span>.</li>
+                <li>Un enlace a una web que consultes para aprender.</li>
+                <li>Un botón que muestre un mensaje usando <span class="inline-code">alert()</span>.</li>
+            </ol>
+
+            <div class="highlight-box">
+                <strong>Consejo:</strong> empieza por el contenido en HTML. Cuando la estructura esté clara, añade CSS para colores, tamaños, márgenes y distribución.
+            </div>
+
+            <h3>Preguntas de repaso</h3>
+            <ul>
+                <li>¿Cuál es la diferencia entre <span class="inline-code">&lt;head&gt;</span> y <span class="inline-code">&lt;body&gt;</span>?</li>
+                <li>¿Para qué sirve el atributo <span class="inline-code">href</span>?</li>
+                <li>¿Por qué es importante el atributo <span class="inline-code">alt</span> en una imagen?</li>
+                <li>¿Qué etiqueta usarías para crear una lista ordenada?</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>HTML5 · Estructura · Semántica · Práctica</p>
+    </footer>
+
+    <script>
+        // Navegación entre pestañas
+        function openTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+
+            if(tabId === 'practica') {
+                updatePreview();
+            }
+        }
+
+        // Actualizar la vista previa en vivo
+        function updatePreview() {
+            const code = document.getElementById('codeEditor').value;
+            const iframe = document.getElementById('previewFrame');
+            const documentContent = iframe.contentDocument || iframe.contentWindow.document;
+            documentContent.open();
+            documentContent.write(code);
+            documentContent.close();
+        }
+
+        // Copiar código al portapapeles
+        function copyCode() {
+            const codeText = document.getElementById('codeEditor');
+            codeText.select();
+            document.execCommand('copy');
+            alert('¡Código copiado al portapapeles!');
+        }
+
+        // Inicializar la vista previa al cargar la página
+        window.onload = function() {
+            updatePreview();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Segunda clase de JavaScript: condiciones sencillas, else if, operadores lógicos y cinco ejercicios propuestos."><title>Clase 02 · Decisiones sencillas con JavaScript</title><style>
+:root{--ink:#1b2634;--muted:#536173;--accent:#285e57;--line:#dfe5e5;--paper:#fff;--bg:#f4f6f4;--nav:#122c2c;--lime:#e3ef85}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #c77c1c;outline-offset:4px}button{font:inherit;cursor:pointer}.skip{position:fixed;top:-100px;left:20px;background:white;z-index:10;padding:12px}.skip:focus{top:15px}.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:var(--nav);color:#fff;overflow-y:auto;padding:34px 22px;z-index:3}.brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:700;letter-spacing:.02em}.js-mark{background:var(--lime);color:#163b36;border-radius:9px;padding:8px 11px;font-size:20px;font-weight:900}.side-label{color:#bbcdca;text-transform:uppercase;font-size:11px;letter-spacing:.16em;margin:32px 12px 12px}.sidebar nav a{display:flex;gap:12px;color:#d8e5e2;text-decoration:none;padding:8px 12px;font-size:13px;line-height:1.5;border-radius:6px}.sidebar nav a:hover,.sidebar nav a[aria-current]{background:#244440;color:white}.sidebar nav a span{color:#d0df8c;font-variant-numeric:tabular-nums}.side-foot{font-size:12px;color:#aec5c0;margin:26px 12px 0;padding-top:18px;border-top:1px solid #37514d}.page{margin-left:258px;padding:44px clamp(24px,5vw,90px) 65px;max-width:1430px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:12px;letter-spacing:.08em;color:var(--muted);margin-bottom:32px}.print-button{border:1px solid #cfd9d6;border-radius:7px;padding:8px 15px;background:white;color:var(--ink);font-size:13px;letter-spacing:0}.hero{position:relative;background:#dfebe3;border:1px solid #d0dfd3;border-radius:18px;padding:clamp(25px,4vw,52px);overflow:hidden;margin-bottom:32px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}.hero h1{font-size:clamp(34px,4.1vw,56px);line-height:1.08;letter-spacing:-.045em;margin:0 0 23px;max-width:720px}.hero .lead{font-size:19px;line-height:1.6;max-width:650px;margin-bottom:26px}.tags{display:flex;gap:9px;flex-wrap:wrap}.tags span{font-size:12px;padding:4px 10px;border-radius:5px;border:1px solid #bdcfc3;background:#eef5ee}section{padding:36px clamp(22px,3.1vw,44px);background:var(--paper);border:1px solid var(--line);border-radius:14px;margin:0 0 24px;scroll-margin-top:24px}.section-heading{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}.number{display:flex;align-items:center;justify-content:center;flex:0 0 37px;height:37px;background:#edf3e8;color:var(--accent);font-size:13px;font-weight:800;border-radius:8px;margin-top:2px}h2{font-size:27px;line-height:1.3;letter-spacing:-.025em;margin:0}h3{font-size:19px;line-height:1.45;margin:28px 0 10px;letter-spacing:-.01em}p{margin:0 0 16px}li{margin-bottom:8px}ul,ol{padding-left:25px;margin:12px 0 22px}strong{font-weight:700}.cards{display:grid;gap:14px;margin:24px 0}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.cards>div{background:#f6f8f6;border:1px solid #e3e8e3;padding:18px;border-radius:9px}.cards h3{margin:0 0 7px;font-size:17px}.cards p{font-size:14px;line-height:1.65;margin:0}.callout,.rule,.try{background:#eff5f0;border-left:4px solid #66916c;border-radius:0 8px 8px 0;margin:22px 0;padding:18px 21px;font-size:15px}.callout p:last-child,.callout ul:last-child,.callout ol:last-child,.rule p:last-child{margin-bottom:0}.rule{background:#f5f3eb;border-color:#ad9865}.try{background:#f4f4e2;border-color:#969f4f}.steps li{padding-left:5px;margin-bottom:15px}.file-list{background:#f6f8f7;border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin:24px 0;font-size:14px}.file-list>div{display:flex;flex-wrap:wrap;gap:10px 25px;padding:9px 0 0 18px}.file-list span{color:var(--muted)}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}p code,li code,td code,.callout code,.file-list code,.check code{font-size:.88em;background:#edf2ef;color:#1d514a;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}kbd{font-size:.85em;padding:2px 5px;border:1px solid #cbd5d1;box-shadow:0 1px 0 #cbd5d1;border-radius:4px;white-space:nowrap}.code{margin:20px 0 12px;border-radius:10px;overflow:hidden;background:#152a32;color:#f3f8f7}.code figcaption{background:#203a42;padding:9px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#c8dfdc;border-bottom:1px solid #345059}.copy{color:#e2eec6;background:#2d4850;border:1px solid #52716f;border-radius:4px;padding:2px 9px;font:12px system-ui;min-width:65px}.code pre{margin:0;padding:20px;overflow-x:auto;font-size:13px;line-height:1.85;tab-size:2}.code code{font:inherit}.output{background:#f6f8f5;border:1px solid #dfe8da;border-radius:8px;padding:13px 18px;margin:0 0 22px}.output>span{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#52684d;font-weight:750}.output pre{font-size:13px;line-height:1.8;margin:8px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.workflow{display:flex;flex-wrap:wrap;align-items:center;gap:13px;margin:23px 0;color:var(--accent);font-size:14px}.workflow span{border:1px solid #ccdbd0;padding:7px 14px;border-radius:6px;background:#f4f8f2}.table-wrap{max-width:100%;overflow-x:auto;margin:20px 0 24px}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.65;text-align:left}th{background:#eef3ef;color:#35564e;font-size:12px;font-weight:750}th,td{padding:12px 14px;border-bottom:1px solid #e1e7e2;vertical-align:top}td:first-child{font-weight:500}details{border:1px solid var(--line);border-radius:8px;padding:13px 17px;margin:20px 0 0;font-size:14px}summary{cursor:pointer;font-weight:650;color:var(--accent)}.sources{padding-top:5px}.exercise{border:1px solid #dce5df;border-radius:10px;padding:25px;margin:20px 0}.exercise-top{display:flex;align-items:center;gap:12px}.exercise-top>span{background:#244f47;color:#e8f0ab;width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}.exercise-top p{margin:0;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.09em}.exercise h3{margin-top:15px;font-size:21px}.check{border-top:1px dashed #c9d8cc;padding-top:15px;margin:18px 0 0;font-size:14px;color:#375d4e}.delivery{background:#edf3e8;border-radius:9px;padding:23px;margin:28px 0 0;font-size:15px}.delivery h3{margin-top:0}.checklist{list-style-type:square}.footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;padding:0 3px}.footer a{text-decoration:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:1500px){.page{margin-right:auto}}@media(max-width:1050px){.sidebar{width:215px;padding-left:13px;padding-right:13px}.page{margin-left:215px;padding-left:24px;padding-right:24px}.three{grid-template-columns:1fr}.cards>div{padding:14px}.hero h1{font-size:42px}}@media(max-width:760px){.sidebar{position:static;width:auto;padding:18px 20px}.sidebar nav,.side-label,.side-foot{display:none}.page{margin:0;padding:23px 14px}.topbar{margin-bottom:18px;letter-spacing:.02em}.hero{padding:26px 23px;border-radius:12px}.hero h1{font-size:38px}.hero .lead{font-size:17px}section{padding:27px 20px}.section-heading{gap:11px}h2{font-size:24px}.number{flex-basis:32px;height:32px}body{font-size:16px}.exercise{padding:19px 16px}.workflow{gap:7px}.workflow span{padding:5px 8px}.code pre{font-size:12px;padding:17px}th,td{padding:10px}.footer{display:block}.footer span{display:block}}
+@media print{@page{size:A4;margin:16mm 15mm}html{scroll-behavior:auto}body{background:white;color:#172229;font:10pt/1.5 system-ui,sans-serif}.sidebar,.topbar,.copy,.skip,.footer a{display:none!important}.page{margin:0;padding:0;max-width:none}.hero{background:#f1f4ee;border-radius:0;padding:20px;margin-bottom:20px}.hero h1{font-size:30pt}.hero .lead{font-size:12pt}.eyebrow{font-size:9pt}.tags span{font-size:8pt}section{border:0;border-top:1px solid #becdc0;border-radius:0;padding:20px 0 6px;margin:0;break-inside:auto}.section-heading{break-after:avoid;margin-bottom:13px}h2{font-size:18pt}h3{font-size:12pt;break-after:avoid}p{orphans:3;widows:3;margin-bottom:10px}li{margin-bottom:5px}table{font-size:9pt}.table-wrap{overflow:visible}tr{break-inside:avoid}thead{display:table-header-group}.code{background:#f3f5f4;color:#132c33;border:1px solid #ccd5d2;break-inside:avoid}.code figcaption{background:#e7eeea;color:#24433b;padding:5px 10px}.code pre{font-size:8pt;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px}.output{break-inside:avoid;padding:9px 12px}.output pre{font-size:8.5pt}.callout,.try,.rule{break-inside:avoid;font-size:9pt;padding:12px 14px}.cards{break-inside:avoid}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.cards p{font-size:9pt}.exercise{break-inside:avoid;padding:17px;margin:15px 0}.exercise h3{font-size:13pt}.exercise-top p{font-size:8pt}.check{font-size:9pt}.delivery{break-inside:avoid;font-size:9pt}.footer{margin-top:15px;font-size:8pt}details{display:none}.workflow{break-inside:avoid;font-size:9pt}a{color:inherit;text-decoration:none}#ejercicios{break-before:page}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body><a class="skip" href="#contenido">Saltar al contenido</a><aside class="sidebar" aria-label="Índice de la clase"><div class="brand"><span class="js-mark" aria-hidden="true">JS</span><span>CUADERNO DE<br>PROGRAMACIÓN</span></div><p class="side-label">Clase 02 / Contenido</p><nav aria-label="Secciones"><a href="#preparacion"><span>01</span>Preparar la clase</a><a href="#repaso"><span>02</span>Repaso de if / else</a><a href="#else-if"><span>03</span>Tres posibilidades</a><a href="#booleanos"><span>04</span>Verdadero y falso</a><a href="#and"><span>05</span>Dos requisitos: &&</a><a href="#or"><span>06</span>Una alternativa: ||</a><a href="#practica"><span>07</span>Ejemplo completo</a><a href="#consulta"><span>08</span>Repaso y errores</a><a href="#ejercicios"><span>09</span>5 ejercicios propuestos</a></nav><p class="side-foot">Una condición cada vez.<br>Prueba también los límites.</p></aside>
+<div class="page"><div class="topbar"><span>PROGRAMACIÓN WEB / NIVEL INICIAL</span><button type="button" class="print-button">Imprimir / PDF</button></div><header class="hero"><p class="eyebrow">Clase 02 · Apuntes de JavaScript</p><h1>Decisiones sencillas,<br>paso a paso.</h1><p class="lead">Practica condiciones, añade una nueva opción y aprende a combinar dos requisitos.</p><div class="tags"><span>Visual Studio Code</span><span>Ejemplos sencillos</span><span>5 ejercicios finales</span></div></header><main id="contenido"><section id="preparacion" aria-labelledby="h-preparacion"><div class="section-heading"><span class="number">01</span><h2 id="h-preparacion">Preparar los archivos</h2></div>
+<p>En la primera clase aprendimos a guardar datos y a usar <code>if / else</code>. Ahora vamos a practicar decisiones con tres posibilidades y a combinar dos condiciones.</p>
+<div class="callout"><strong>Objetivos de esta clase</strong><ul><li>Elegir entre varias opciones con <code>else if</code>.</li><li>Comprobar dos requisitos a la vez con <code>&amp;&amp;</code>.</li><li>Aceptar una condición u otra con <code>||</code>.</li></ul></div>
+<ol class="steps"><li>Crea una carpeta llamada <code>clase-02-javascript</code>.</li><li>Abre Visual Studio Code y selecciona <em>Archivo → Abrir carpeta…</em> (<em>File → Open Folder…</em>). Elige esa carpeta.</li><li>En el Explorador lateral, crea los archivos <code>index.html</code> y <code>app.js</code>. Ambos deben estar en la misma carpeta.</li><li>Escribe este contenido en <code>index.html</code> y guárdalo:</li></ol>
+<figure class="code"><figcaption><span>index.html</span></figcaption><pre><code data-language="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;es&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;JavaScript - Clase 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Clase 2: tomar decisiones&lt;/h1&gt;
+  &lt;p&gt;Los resultados aparecen en la consola del navegador.&lt;/p&gt;
+
+  &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+<ol class="steps" start="5"><li>Escribe en <code>app.js</code> el mensaje que aparece debajo y guarda el archivo.</li><li>Abre <code>index.html</code> con el navegador desde la carpeta del equipo. Puedes arrastrarlo a una ventana del navegador.</li><li>Haz clic derecho en la página, selecciona <em>Inspeccionar</em> y abre la pestaña <em>Consola</em> (<em>Console</em>).</li><li>Recarga la página y comprueba el mensaje.</li></ol>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">console.log(&quot;Empezamos la segunda clase&quot;);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Empezamos la segunda clase</pre></div>
+<div class="workflow"><span>Escribir</span><b aria-hidden="true">→</b><span>Guardar</span><b aria-hidden="true">→</b><span>Recargar</span><b aria-hidden="true">→</b><span>Comprobar</span></div>
+<p>Guarda con <kbd>Ctrl</kbd> + <kbd>S</kbd> en Windows o Linux, o <kbd>⌘</kbd> + <kbd>S</kbd> en macOS. Después, vuelve al navegador y pulsa su botón de recarga.</p>
+<div class="rule"><strong>Un ejemplo cada vez.</strong><p>Para probar cada bloque, sustituye todo el contenido de <code>app.js</code> por ese ejemplo. El archivo <code>index.html</code> se mantiene igual durante las explicaciones.</p></div>
+</section><section id="repaso" aria-labelledby="h-repaso"><div class="section-heading"><span class="number">02</span><h2 id="h-repaso">Recordar una decisión sencilla</h2></div>
+<p>Un <code>if</code> comprueba una condición. Si se cumple, ejecuta su bloque; si no se cumple, ejecuta el bloque de <code>else</code>.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const saldo = 12;
+
+if (saldo &gt;= 10) {
+  console.log(&quot;Puedes comprar el libro&quot;);
+} else {
+  console.log(&quot;Te falta dinero&quot;);
+}</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Puedes comprar el libro</pre></div>
+<ol><li>La condición es <code>saldo &gt;= 10</code>.</li><li>Como <code>12</code> es mayor o igual que <code>10</code>, la condición es <code>true</code>.</li><li>Se muestra el primer mensaje. El bloque de <code>else</code> no se ejecuta.</li></ol>
+<div class="try"><strong>Prueba el cambio:</strong> sustituye <code>12</code> por <code>8</code>. Guarda y recarga. Debe aparecer <code>Te falta dinero</code>. Después prueba con <code>10</code>: debe permitir la compra.</div>
+<p>Recuerda: <code>&gt;</code> significa «mayor que» y <code>&gt;=</code>, «mayor o igual que». El valor del límite también cuenta cuando usamos <code>&gt;=</code>.</p>
+</section><section id="else-if" aria-labelledby="h-else-if"><div class="section-heading"><span class="number">03</span><h2 id="h-else-if">Añadir otra opción con else if</h2></div>
+<p>A veces necesitamos elegir entre tres resultados. Para añadir una segunda condición, escribimos <code>else if</code> entre <code>if</code> y <code>else</code>.</p>
+<p>Vamos a clasificar una temperatura: desde 30 grados, hace calor; desde 20 hasta menos de 30, la temperatura es agradable; por debajo de 20, hace fresco.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const temperatura = 24;
+
+if (temperatura &gt;= 30) {
+  console.log(&quot;Hace calor&quot;);
+} else if (temperatura &gt;= 20) {
+  console.log(&quot;La temperatura es agradable&quot;);
+} else {
+  console.log(&quot;Hace fresco&quot;);
+}</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>La temperatura es agradable</pre></div>
+<ol><li>Se comprueba <code>temperatura &gt;= 30</code>. Con 24 es falso.</li><li>Se comprueba <code>temperatura &gt;= 20</code>. Con 24 es verdadero.</li><li>Se muestra el segundo mensaje y se termina la cadena de condiciones.</li></ol>
+<div class="callout"><strong>El orden importa.</strong> Se ejecuta el primer bloque cuya condición se cumpla. Aquí comprobamos primero <code>&gt;= 30</code>. Si comprobáramos antes <code>&gt;= 20</code>, una temperatura de 35 también entraría en ese primer bloque.</div>
+<p>No hace falta repetir <code>temperatura &lt; 30</code> en la segunda condición: solo llegamos a ella cuando la primera ha sido falsa. <code>else</code> recoge el resto de los casos y no lleva condición.</p>
+<h3>Comprobar los límites</h3><p>Cambia únicamente el valor de <code>temperatura</code> y repite el proceso de guardar y recargar.</p>
+<div class="table-wrap"><table><thead><tr><th>Temperatura</th><th>Mensaje esperado</th></tr></thead><tbody><tr><td>19</td><td>Hace fresco</td></tr><tr><td>20</td><td>La temperatura es agradable</td></tr><tr><td>29</td><td>La temperatura es agradable</td></tr><tr><td>30</td><td>Hace calor</td></tr></tbody></table></div>
+</section><section id="booleanos" aria-labelledby="h-booleanos"><div class="section-heading"><span class="number">04</span><h2 id="h-booleanos">Condiciones que devuelven true o false</h2></div>
+<p>Una comparación produce un valor lógico: <code>true</code> (verdadero) o <code>false</code> (falso). Podemos mostrar ese resultado en la consola.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const puntos = 8;
+
+console.log(puntos &gt;= 5);
+console.log(puntos &lt; 5);
+console.log(puntos === 8);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>true
+false
+true</pre></div>
+<p>También podemos guardar directamente un valor lógico en una variable:</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const tieneEntrada = true;
+
+console.log(tieneEntrada);
+console.log(tieneEntrada === true);</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>true
+true</pre></div>
+<p>Escribe <code>true</code> y <code>false</code> sin comillas. <code>"true"</code> es un texto, mientras que <code>true</code> es un valor lógico. En los siguientes ejemplos usaremos <code>=== true</code> para comprobar explícitamente ese valor.</p>
+<div class="rule"><strong>Asignar y comparar son operaciones diferentes.</strong><p><code>const puntos = 8;</code> guarda el valor 8. <code>puntos === 8</code> comprueba si el valor es 8 y tiene el mismo tipo.</p></div>
+</section><section id="and" aria-labelledby="h-and"><div class="section-heading"><span class="number">05</span><h2 id="h-and">Cumplir las dos condiciones: &&</h2></div>
+<p><code>&amp;&amp;</code> se lee «y». Al combinar dos comparaciones, el resultado es verdadero solo si las dos son verdaderas.</p>
+<p>Para participar en una actividad se necesitan al menos 10 puntos <strong>y</strong> una inscripción confirmada.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const puntos = 12;
+const inscripcionConfirmada = true;
+
+if (puntos &gt;= 10 &amp;&amp; inscripcionConfirmada === true) {
+  console.log(&quot;Puedes participar&quot;);
+} else {
+  console.log(&quot;Falta algún requisito&quot;);
+}</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Puedes participar</pre></div>
+<p>La parte izquierda comprueba los puntos. La parte derecha comprueba la inscripción. Si falta cualquiera de los dos requisitos, aparece el segundo mensaje.</p>
+<div class="table-wrap"><table><thead><tr><th>Puntos</th><th>Inscripción confirmada</th><th>Resultado</th></tr></thead><tbody><tr><td>12</td><td><code>true</code></td><td>Puedes participar</td></tr><tr><td>12</td><td><code>false</code></td><td>Falta algún requisito</td></tr><tr><td>8</td><td><code>true</code></td><td>Falta algún requisito</td></tr><tr><td>8</td><td><code>false</code></td><td>Falta algún requisito</td></tr></tbody></table></div>
+<div class="try"><strong>Ahora prueba:</strong> conserva 12 puntos y cambia la inscripción a <code>false</code>. Después prueba con 8 puntos y la inscripción en <code>true</code>. En ambos casos debe faltar algún requisito.</div>
+</section><section id="or" aria-labelledby="h-or"><div class="section-heading"><span class="number">06</span><h2 id="h-or">Cumplir una condición u otra: ||</h2></div>
+<p><code>||</code> se lee «o». Al combinar dos comparaciones, basta con que una sea verdadera. Si las dos son verdaderas, el resultado también es verdadero.</p>
+<p>Una cafetería ofrece una promoción los lunes o los miércoles.</p>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const dia = &quot;lunes&quot;;
+
+if (dia === &quot;lunes&quot; || dia === &quot;miércoles&quot;) {
+  console.log(&quot;Hoy hay promoción&quot;);
+} else {
+  console.log(&quot;Hoy no hay promoción&quot;);
+}</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Hoy hay promoción</pre></div>
+<p>La comparación se escribe completa a ambos lados del operador: <code>dia === "lunes"</code> y <code>dia === "miércoles"</code>. <code>||</code> son dos barras verticales seguidas.</p>
+<div class="try"><strong>Ahora prueba:</strong> cambia el día por <code>"miércoles"</code> y después por <code>"martes"</code>. El miércoles debe haber promoción; el martes, no. Copia las palabras exactamente, incluida la tilde.</div>
+<h3>Elegir el operador</h3><div class="table-wrap"><table><thead><tr><th>La regla dice…</th><th>Operador</th><th>Qué se necesita</th></tr></thead><tbody><tr><td>Un requisito <strong>y</strong> otro</td><td><code>&amp;&amp;</code></td><td>Los dos.</td></tr><tr><td>Un requisito <strong>o</strong> el otro</td><td><code>||</code></td><td>Al menos uno.</td></tr></tbody></table></div>
+</section><section id="practica" aria-labelledby="h-practica"><div class="section-heading"><span class="number">07</span><h2 id="h-practica">Práctica guiada: elegir una actividad</h2></div>
+<p>Vamos a elegir una actividad usando estas reglas:</p><ul><li>Si llueve, se cancela la salida.</li><li>Si no llueve y la temperatura está entre 18 y 28 grados, incluidos ambos límites, la actividad será al aire libre.</li><li>En el resto de los casos, la actividad será en el interior.</li></ul>
+<ol class="steps"><li>Abre <code>app.js</code> y sustituye su contenido por este código.</li><li>Guarda y recarga el navegador.</li><li>Comprueba la salida y después prueba los datos de la tabla.</li></ol>
+<figure class="code"><figcaption><span>app.js</span></figcaption><pre><code data-language="js">const llueve = false;
+const temperatura = 22;
+
+if (llueve === true) {
+  console.log(&quot;Salida cancelada&quot;);
+} else if (temperatura &gt;= 18 &amp;&amp; temperatura &lt;= 28) {
+  console.log(&quot;Actividad al aire libre&quot;);
+} else {
+  console.log(&quot;Actividad en el interior&quot;);
+}</code></pre></figure><div class="output"><span>Resultado en la consola</span><pre>Actividad al aire libre</pre></div>
+<p>Si llegamos al <code>else if</code>, ya sabemos que no llueve. En ese bloque usamos <code>&amp;&amp;</code> para comprobar los dos límites de temperatura.</p>
+<div class="table-wrap"><table><thead><tr><th>Llueve</th><th>Temperatura</th><th>Mensaje esperado</th></tr></thead><tbody><tr><td><code>true</code></td><td>22</td><td>Salida cancelada</td></tr><tr><td><code>false</code></td><td>18</td><td>Actividad al aire libre</td></tr><tr><td><code>false</code></td><td>28</td><td>Actividad al aire libre</td></tr><tr><td><code>false</code></td><td>17</td><td>Actividad en el interior</td></tr><tr><td><code>false</code></td><td>29</td><td>Actividad en el interior</td></tr></tbody></table></div>
+</section><section id="consulta" aria-labelledby="h-consulta"><div class="section-heading"><span class="number">08</span><h2 id="h-consulta">Antes de resolver los ejercicios</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Quiero…</th><th>Utilizo…</th></tr></thead><tbody><tr><td>Elegir entre dos posibilidades</td><td><code>if / else</code></td></tr><tr><td>Añadir una segunda condición</td><td><code>else if</code></td></tr><tr><td>Exigir dos requisitos</td><td><code>&amp;&amp;</code></td></tr><tr><td>Aceptar cualquiera de dos requisitos</td><td><code>||</code></td></tr><tr><td>Comparar igualdad</td><td><code>===</code></td></tr><tr><td>Cambiar una variable durante el programa</td><td>Declararla con <code>let</code>.</td></tr></tbody></table></div>
+<h3>Errores que conviene revisar</h3><ul><li>Escribe <code>else if</code> en dos palabras; <code>elseif</code> no es correcto.</li><li>No pongas <code>;</code> entre la condición del <code>if</code> y su llave de apertura.</li><li>Escribe <code>&amp;&amp;</code> y <code>||</code> con dos símbolos, no con uno.</li><li>Repite la comparación completa: <code>dia === "lunes" || dia === "miércoles"</code>.</li><li>Usa números sin comillas para las edades, notas, temperaturas y precios.</li><li>Si aparece <code>ReferenceError</code>, comprueba los nombres de las variables. Si aparece <code>SyntaxError</code>, revisa comillas, paréntesis y llaves.</li></ul>
+<div class="callout"><strong>Cómo comprobar una solución</strong><ol><li>Lee la regla e identifica los datos y las condiciones.</li><li>Prueba un caso que cumpla la condición y otro que no.</li><li>Prueba también el valor exacto del límite: por ejemplo, 18 si la regla utiliza <code>&gt;= 18</code>.</li><li>Comprueba que los mensajes sean claros y que no haya errores en la consola.</li></ol></div>
+<details><summary>Documentación de consulta</summary><ul class="sources"><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else">MDN: if, else if y else</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND">MDN: operador lógico AND (&amp;&amp;)</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">MDN: operador lógico OR (||)</a></li></ul></details>
+</section><section id="ejercicios" aria-labelledby="h-ejercicios"><div class="section-heading"><span class="number">09</span><h2 id="h-ejercicios">Cinco ejercicios propuestos</h2></div>
+<p>Resuelve los ejercicios escribiendo los datos directamente en el código y mostrando los resultados con <code>console.log()</code>.</p>
+<div class="callout"><strong>Preparación y entrega</strong><ol><li>Crea cinco archivos en la carpeta de esta clase: <code>ejercicio-01.js</code>, <code>ejercicio-02.js</code>, <code>ejercicio-03.js</code>, <code>ejercicio-04.js</code> y <code>ejercicio-05.js</code>.</li><li>Para probar cada uno, cambia el nombre del archivo en la única etiqueta <code>script</code> de <code>index.html</code>. Por ejemplo: <code>&lt;script src="ejercicio-01.js"&gt;&lt;/script&gt;</code>.</li><li>Guarda el HTML y el JavaScript, recarga el navegador y prueba todos los casos indicados.</li><li>Entrega la carpeta con <code>index.html</code> y los cinco archivos de ejercicios. Usa nombres claros para las variables y ordena la sangría.</li></ol></div>
+
+<article class="exercise"><div class="exercise-top"><span>01</span><p>if / else</p></div><h3>¿Hace falta chaqueta?</h3><p>Declara una constante <code>temperatura</code> con valor <code>15</code>.</p><ul><li>Si la temperatura es menor que 18, muestra <code>Lleva una chaqueta</code>.</li><li>En caso contrario, muestra <code>No hace falta chaqueta</code>.</li></ul><p class="check"><strong>Pruebas:</strong> con 15 y 17 debe recomendar chaqueta. Con 18 y 23 no debe recomendarla.</p></article>
+
+<article class="exercise"><div class="exercise-top"><span>02</span><p>else if</p></div><h3>Clasificar una nota</h3><p>Declara una constante <code>nota</code> con un número entre 0 y 10. Utiliza <code>if</code>, <code>else if</code> y <code>else</code> para mostrar:</p><ul><li><code>Excelente</code> si la nota es 9 o más.</li><li><code>Aprobado</code> si la nota es 5 o más, pero menor que 9.</li><li><code>Necesita mejorar</code> si la nota es menor que 5.</li></ul><p>Comprueba primero la condición de la nota más alta. Para este ejercicio, utiliza siempre notas válidas entre 0 y 10.</p><p class="check"><strong>Pruebas:</strong> 4 → <code>Necesita mejorar</code>; 5 y 8 → <code>Aprobado</code>; 9 y 10 → <code>Excelente</code>.</p></article>
+
+<article class="exercise"><div class="exercise-top"><span>03</span><p>Operador &amp;&amp;</p></div><h3>Subir a una atracción</h3><p>Declara las constantes <code>edad</code> y <code>altura</code>. La altura se expresa en centímetros.</p><p>Para subir se necesitan <strong>12 años o más y una altura de 140 cm o más</strong>. Si se cumplen ambos requisitos, muestra <code>Puedes subir</code>. En caso contrario, muestra <code>No cumples los requisitos</code>.</p><p class="check"><strong>Pruebas:</strong> edad 12 y altura 140 → puede subir; edad 11 y altura 150 → no puede; edad 14 y altura 139 → no puede. Usa <code>&amp;&amp;</code> para unir las dos comparaciones.</p></article>
+
+<article class="exercise"><div class="exercise-top"><span>04</span><p>Operador ||</p></div><h3>Envío gratuito</h3><p>Declara una constante <code>importeCompra</code> y otra llamada <code>esSocio</code>, con valor <code>true</code> o <code>false</code>.</p><p>El envío es gratuito si la compra alcanza los <strong>30 € o la persona es socia</strong>. Muestra <code>Envío gratuito</code> cuando se cumpla al menos una de las condiciones y <code>Envío de pago</code> en caso contrario.</p><p class="check"><strong>Pruebas:</strong> compra de 30 € y <code>false</code> → gratuito; compra de 12 € y <code>true</code> → gratuito; compra de 12 € y <code>false</code> → de pago; compra de 30 € y <code>true</code> → gratuito.</p></article>
+
+<article class="exercise"><div class="exercise-top"><span>05</span><p>Variables y varias opciones</p></div><h3>Precio de una entrada</h3><p>Declara una constante <code>edad</code> y una variable <code>precioEntrada</code> con <code>let</code>. Utiliza un valor inicial de <code>0</code> para el precio.</p><p>Asigna el precio que corresponda mediante una cadena de <code>if / else if / else</code>:</p><ul><li>Menores de 6 años: entrada gratuita, precio 0 €.</li><li>Desde 6 hasta 15 años: precio 5 €.</li><li>A partir de 16 años: precio 8 €.</li></ul><p>Al terminar las condiciones, muestra la edad y el precio con etiquetas claras. Para este ejercicio, utiliza edades de 0 años en adelante.</p><p class="check"><strong>Pruebas:</strong> edad 5 → precio 0 €; edades 6 y 15 → precio 5 €; edades 16 y 30 → precio 8 €. Comprueba especialmente las edades 6 y 16.</p></article>
+</section></main><footer class="footer"><span>JavaScript · Clase 02 · Decisiones sencillas</span><a href="#contenido">Volver al principio ↑</a></footer></div><div id="status" class="sr-only" role="status" aria-live="polite"></div><script>
+document.querySelector('.print-button').addEventListener('click', () => window.print());
+document.querySelectorAll('.code').forEach(figure => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'copy';
+  button.textContent = 'Copiar';
+  button.setAttribute('aria-label', 'Copiar código de ' + figure.querySelector('figcaption span').textContent);
+  figure.querySelector('figcaption').append(button);
+  button.addEventListener('click', async () => {
+    const source = figure.querySelector('code').textContent;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(source);
+      } else {
+        const area = document.createElement('textarea');
+        area.value = source;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.append(area);
+        area.select();
+        const copied = document.execCommand('copy');
+        area.remove();
+        button.focus();
+        if (!copied) throw new Error('copy');
+      }
+      button.textContent = 'Copiado';
+      document.getElementById('status').textContent = 'Código copiado.';
+    } catch {
+      button.textContent = 'Selecciona';
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(figure.querySelector('code'));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.getElementById('status').textContent = 'Código seleccionado. Usa la opción Copiar del navegador.';
+    }
+    setTimeout(() => { button.textContent = 'Copiar'; }, 2200);
+  });
+});
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.sidebar nav a').forEach(a => a.removeAttribute('aria-current'));
+        const link = document.querySelector('.sidebar nav a[href="#' + entry.target.id + '"]');
+        if (link) link.setAttribute('aria-current', 'location');
+      }
+    });
+  }, {rootMargin: '-10% 0px -65% 0px'});
+  document.querySelectorAll('main section').forEach(section => observer.observe(section));
+}
+</script></body></html>
