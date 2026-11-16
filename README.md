@@ -2,6 +2,10 @@
 
 Escape room educativo en español sobre HTML, CSS y JavaScript. Una misión con **3 salas y 36 retos**, basada en los cuatro apuntes HTML de esta carpeta. Funciona sin servidor, librerías ni servicios externos, también en móvil.
 
+## Repaso en una hora: Hospital de código
+
+Abre [hospital.html](hospital.html), también enlazado desde la portada. Actividad independiente con 32 preguntas tipo test, tres reparaciones de una palabra, pistas, guardado local, simulacro final de ocho preguntas e informe descargable. Revisa todo el temario de los cuatro apuntes. Consulta la [guía de la clase de 60 minutos](HOSPITAL_DOCENTE.md) para el reparto del tiempo y la entrega en Moodle.
+
 ## Jugar
 
 Abre `index.html` en un navegador o visita la URL de GitHub Pages del repositorio. Para probar con un servidor local:
